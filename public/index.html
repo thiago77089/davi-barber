@@ -10,8 +10,8 @@
   :root{
     --accent:#C8973A;--accent-dark:#9E7220;--accent-light:#f0c96a;
     --dark:#111111;--dark2:#1c1c1c;--dark3:#2a2a2a;--dark4:#333333;
-    --light:#f5f0e8;--white:#ffffff;--text-on-dark:#e8dfc8;--text-muted:#8a7a60;
-    --green:#3B6D11;--green-light:#97C459;
+    --white:#ffffff;--text-on-dark:#e8dfc8;--text-muted:#8a7a60;
+    --green-light:#97C459;
   }
   html{scroll-behavior:smooth}
   body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--text-on-dark);min-height:100vh}
@@ -80,23 +80,22 @@
   .summary-label{color:var(--text-muted)}
   .summary-value{color:var(--white);font-weight:700}
   .summary-price{color:var(--accent);font-size:20px;font-weight:700;font-family:'Playfair Display',serif}
-  .confirm-btn{width:100%;background:var(--accent);color:var(--dark);border:none;border-radius:12px;padding:18px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:2px;text-transform:uppercase;transition:all .25s;font-family:'Lato',sans-serif;position:relative;overflow:hidden}
+  .confirm-btn{width:100%;background:var(--accent);color:var(--dark);border:none;border-radius:12px;padding:18px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:2px;text-transform:uppercase;transition:all .25s;font-family:'Lato',sans-serif;overflow:hidden}
   .confirm-btn:hover:not(:disabled){background:var(--accent-light);transform:translateY(-1px);box-shadow:0 8px 30px rgba(200,151,58,.4)}
   .confirm-btn:disabled{opacity:.4;cursor:not-allowed}
-  .confirm-btn.loading{opacity:.7;pointer-events:none}
+  .error-msg{background:rgba(226,75,74,.1);border:1px solid rgba(226,75,74,.4);border-radius:10px;padding:12px 16px;color:#F09595;font-size:14px;margin-bottom:12px;display:none}
   .success-box{display:none;background:var(--dark2);border:1px solid rgba(59,109,17,.5);border-radius:16px;padding:40px 24px;text-align:center;animation:fadeIn .4s ease}
   .success-circle{width:80px;height:80px;background:rgba(59,109,17,.2);border:2px solid var(--green-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 20px}
   .success-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--green-light);margin-bottom:12px}
   .success-sub{font-size:15px;color:var(--text-muted);line-height:1.7;white-space:pre-line;max-width:360px;margin:0 auto 24px}
   .new-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:10px;padding:12px 28px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:1px;transition:all .25s}
   .new-btn:hover{background:var(--accent);color:var(--dark)}
-  .error-msg{background:rgba(226,75,74,.1);border:1px solid rgba(226,75,74,.4);border-radius:10px;padding:12px 16px;color:#F09595;font-size:14px;margin-bottom:12px;display:none}
   footer{background:var(--dark2);border-top:1px solid var(--dark3);padding:30px 5%;text-align:center}
   .footer-logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--accent);margin-bottom:8px}
   .footer-info{font-size:13px;color:var(--text-muted);line-height:1.8}
   .footer-sep{color:var(--dark4);margin:0 8px}
   .footer-copy{font-size:11px;color:var(--dark4);margin-top:16px}
-  @media(max-width:500px){header{padding:0 4%}.logo-text{font-size:16px}.hero{padding:40px 4% 36px}.booking{padding:24px 4% 50px}.services-grid{grid-template-columns:1fr 1fr 1fr}.service-name{font-size:12px}.service-price{font-size:13px}.times-grid{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:500px){header{padding:0 4%}.logo-text{font-size:16px}.hero{padding:40px 4% 36px}.booking{padding:24px 4% 50px}.services-grid{grid-template-columns:1fr 1fr 1fr}.service-name{font-size:12px}.times-grid{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
@@ -131,7 +130,6 @@
 
 <div class="booking">
   <div class="section-label" id="sec-label">Faça seu agendamento</div>
-
   <div id="booking-form">
     <div class="step-card">
       <div class="step-header"><div class="step-num">1</div><div class="step-title" id="step1-title">Escolha o serviço</div></div>
@@ -149,7 +147,6 @@
       <div class="step-header"><div class="step-num">4</div><div class="step-title" id="step4-title">Seu nome</div></div>
       <input class="name-input" id="client-name" type="text" placeholder="Digite seu nome..." autocomplete="given-name"/>
     </div>
-
     <div class="summary-box" id="summary-box" style="display:none">
       <div class="summary-title" id="sum-heading">Resumo do Agendamento</div>
       <div class="summary-row"><span class="summary-label" id="sum-svc-lbl">Serviço</span><span class="summary-value" id="sum-svc">—</span></div>
@@ -158,13 +155,11 @@
       <div class="summary-row"><span class="summary-label" id="sum-name-lbl">Nome</span><span class="summary-value" id="sum-name">—</span></div>
       <div class="summary-row"><span class="summary-label" id="sum-price-lbl">Total</span><span class="summary-price" id="sum-price">—</span></div>
     </div>
-
-    <div class="error-msg" id="error-msg">Erro ao salvar agendamento. Tente novamente.</div>
+    <div class="error-msg" id="error-msg"></div>
     <button class="confirm-btn" id="confirm-btn" onclick="confirmBooking()" disabled>
       <span id="confirm-text">CONFIRMAR AGENDAMENTO</span>
     </button>
   </div>
-
   <div class="success-box" id="success-box">
     <div class="success-circle">✓</div>
     <div class="success-title" id="success-title">Agendamento Confirmado!</div>
@@ -186,6 +181,14 @@
 </footer>
 
 <script>
+// ── PREÇOS FIXOS EM DÓLAR (mesmo em todos os idiomas) ──────
+const SERVICES = [
+  { icon:'✂',  name_pt:'Corte de Cabelo', name_en:'Haircut',     name_es:'Corte de Pelo', price:'$10', time:'30 min' },
+  { icon:'🧔', name_pt:'Corte + Barba',   name_en:'Cut + Beard', name_es:'Corte + Barba', price:'$16', time:'50 min' },
+  { icon:'⬆',  name_pt:'Sobrancelha',     name_en:'Eyebrow',     name_es:'Ceja',          price:'$5',  time:'15 min' }
+];
+
+// ── TRADUÇÕES ───────────────────────────────────────────────
 const LANGS = {
   pt: {
     badge:'Agendamento Online', heroTitle:'Estilo que <span>fala por si só.</span>',
@@ -198,13 +201,9 @@ const LANGS = {
     sumTime:'Horário', sumName:'Nome', sumPrice:'Total',
     successTitle:'Agendamento Confirmado!', newBtn:'Novo agendamento',
     footerDays:'Segunda – Sábado', footerWalk:'Aceita visitas sem hora marcada',
-    errMsg:'Erro ao salvar. Tente novamente.',
+    errMsg:'Erro ao salvar. Tente novamente.', errOcupado:'Horário já reservado! Escolha outro.',
     locale:'pt-BR', days:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
-    services:[
-      {icon:'✂', name:'Corte de Cabelo', price:'R$ 35', time:'30 min'},
-      {icon:'🧔', name:'Corte + Barba',   price:'R$ 55', time:'50 min'},
-      {icon:'⬆', name:'Sobrancelha',     price:'R$ 15', time:'15 min'}
-    ],
+    svcName: s => s.name_pt,
     successSub:(s,d,t,n)=>`${n}, seu agendamento está confirmado!\n\nServiço: ${s}\nData: ${d}\nHorário: ${t}\n\nTe esperamos!`
   },
   en: {
@@ -218,13 +217,9 @@ const LANGS = {
     sumTime:'Time', sumName:'Name', sumPrice:'Total',
     successTitle:'Booking Confirmed!', newBtn:'New booking',
     footerDays:'Monday – Saturday', footerWalk:'Walk-ins welcome',
-    errMsg:'Error saving booking. Please try again.',
+    errMsg:'Error saving. Please try again.', errOcupado:'Time already booked! Choose another.',
     locale:'en-US', days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-    services:[
-      {icon:'✂', name:'Haircut',    price:'$10', time:'30 min'},
-      {icon:'🧔', name:'Cut + Beard',price:'$16', time:'50 min'},
-      {icon:'⬆', name:'Eyebrow',    price:'$5',  time:'15 min'}
-    ],
+    svcName: s => s.name_en,
     successSub:(s,d,t,n)=>`${n}, your booking is confirmed!\n\nService: ${s}\nDate: ${d}\nTime: ${t}\n\nSee you there!`
   },
   es: {
@@ -238,23 +233,32 @@ const LANGS = {
     sumTime:'Horario', sumName:'Nombre', sumPrice:'Total',
     successTitle:'¡Reserva Confirmada!', newBtn:'Nueva reserva',
     footerDays:'Lunes – Sábado', footerWalk:'Se aceptan visitas sin cita',
-    errMsg:'Error al guardar. Inténtalo de nuevo.',
+    errMsg:'Error al guardar. Inténtalo de nuevo.', errOcupado:'¡Horario ocupado! Elige otro.',
     locale:'es-ES', days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
-    services:[
-      {icon:'✂', name:'Corte de Pelo', price:'$10', time:'30 min'},
-      {icon:'🧔', name:'Corte + Barba', price:'$16', time:'50 min'},
-      {icon:'⬆', name:'Ceja',           price:'$5',  time:'15 min'}
-    ],
+    svcName: s => s.name_es,
     successSub:(s,d,t,n)=>`${n}, ¡tu reserva está confirmada!\n\nServicio: ${s}\nFecha: ${d}\nHorario: ${t}\n\n¡Te esperamos!`
   }
 };
 
-const allTimes=[];
-for(let h=9;h<=19;h++){allTimes.push(h+':00');if(h<19)allTimes.push(h+':30')}
-const unavailIdx=[0,3,8,13,17];
+// ── HORÁRIOS: 9:00 → 19:30 de 30 em 30 min ─────────────────
+const allTimes = [];
+for(let h=9;h<=19;h++){allTimes.push(h+':00');if(h<19)allTimes.push(h+':30');}
 
 let lang='pt', selService=null, selDay=null, selDayDate=null, selTime=null;
+let horariosOcupados=[];
 
+// ── BUSCA HORÁRIOS OCUPADOS NO SERVIDOR ─────────────────────
+async function fetchHorariosOcupados(date){
+  try{
+    const iso=date.toISOString().split('T')[0];
+    const res=await fetch('/api/horarios-ocupados?data='+iso);
+    const data=await res.json();
+    horariosOcupados=data.ocupados||[];
+  }catch(e){ horariosOcupados=[]; }
+  renderTimes();
+}
+
+// ── TROCA IDIOMA ────────────────────────────────────────────
 function setLang(l){
   lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===l.toUpperCase()));
@@ -262,71 +266,83 @@ function setLang(l){
   document.getElementById('hero-badge').textContent=L.badge;
   document.getElementById('hero-title').innerHTML=L.heroTitle;
   document.getElementById('hero-desc').textContent=L.heroDesc;
-  ['stat1','stat2','stat3','sec-label','step1-title','step2-title','step3-title','step4-title',
-   'sum-heading','sum-svc-lbl','sum-date-lbl','sum-time-lbl','sum-name-lbl','sum-price-lbl',
-   'success-title','new-btn','footer-days','footer-walk'].forEach(id=>{
-    const map={
-      'stat1':L.stat1,'stat2':L.stat2,'stat3':L.stat3,'sec-label':L.secLabel,
-      'step1-title':L.step1,'step2-title':L.step2,'step3-title':L.step3,'step4-title':L.step4,
-      'sum-heading':L.sumHeading,'sum-svc-lbl':L.sumSvc,'sum-date-lbl':L.sumDate,
-      'sum-time-lbl':L.sumTime,'sum-name-lbl':L.sumName,'sum-price-lbl':L.sumPrice,
-      'success-title':L.successTitle,'new-btn':L.newBtn,
-      'footer-days':L.footerDays,'footer-walk':L.footerWalk
-    };
-    if(document.getElementById(id))document.getElementById(id).textContent=map[id];
-  });
+  document.getElementById('stat1').textContent=L.stat1;
+  document.getElementById('stat2').textContent=L.stat2;
+  document.getElementById('stat3').textContent=L.stat3;
+  document.getElementById('sec-label').textContent=L.secLabel;
+  document.getElementById('step1-title').textContent=L.step1;
+  document.getElementById('step2-title').textContent=L.step2;
+  document.getElementById('step3-title').textContent=L.step3;
+  document.getElementById('step4-title').textContent=L.step4;
   document.getElementById('client-name').placeholder=L.namePh;
   document.getElementById('confirm-text').textContent=L.confirm;
-  renderServices();renderDays();renderTimes();updateSummary();
+  document.getElementById('sum-heading').textContent=L.sumHeading;
+  document.getElementById('sum-svc-lbl').textContent=L.sumSvc;
+  document.getElementById('sum-date-lbl').textContent=L.sumDate;
+  document.getElementById('sum-time-lbl').textContent=L.sumTime;
+  document.getElementById('sum-name-lbl').textContent=L.sumName;
+  document.getElementById('sum-price-lbl').textContent=L.sumPrice;
+  document.getElementById('success-title').textContent=L.successTitle;
+  document.getElementById('new-btn').textContent=L.newBtn;
+  document.getElementById('footer-days').textContent=L.footerDays;
+  document.getElementById('footer-walk').textContent=L.footerWalk;
+  renderServices(); renderDays(); renderTimes(); updateSummary();
 }
 
+// ── SERVIÇOS ────────────────────────────────────────────────
 function renderServices(){
   const L=LANGS[lang];
   const g=document.getElementById('services-grid');
   g.innerHTML='';
-  L.services.forEach((s,i)=>{
+  SERVICES.forEach((s,i)=>{
     const d=document.createElement('div');
     d.className='service-btn'+(selService===i?' selected':'');
-    d.innerHTML=`<div class="service-check">✓</div><div class="service-icon">${s.icon}</div><div class="service-name">${s.name}</div><div class="service-price">${s.price}</div><div class="service-time">${s.time}</div>`;
-    d.onclick=()=>{selService=i;renderServices();updateSummary();checkReady()};
+    d.innerHTML=`<div class="service-check">✓</div><div class="service-icon">${s.icon}</div><div class="service-name">${L.svcName(s)}</div><div class="service-price">${s.price}</div><div class="service-time">${s.time}</div>`;
+    d.onclick=()=>{ selService=i; renderServices(); updateSummary(); checkReady(); };
     g.appendChild(d);
   });
 }
 
+// ── DIAS (sem domingo) ──────────────────────────────────────
 function renderDays(){
   const L=LANGS[lang];
   const g=document.getElementById('days-row');
   g.innerHTML='';
   const today=new Date();
-  for(let i=0;i<7;i++){
-    const d=new Date(today);d.setDate(today.getDate()+i);
+  let count=0, idx=0;
+  while(idx<7){
+    const d=new Date(today); d.setDate(today.getDate()+count); count++;
+    if(d.getDay()===0) continue; // pula domingo
+    const i=idx; idx++;
     const btn=document.createElement('div');
     btn.className='day-btn'+(selDay===i?' selected':'');
     const monthStr=d.toLocaleString(L.locale,{month:'short'});
     btn.innerHTML=`<div class="day-name">${L.days[d.getDay()]}</div><div class="day-num">${d.getDate()}</div><div class="day-month">${monthStr}</div>`;
-    btn.onclick=()=>{selDay=i;selDayDate=new Date(d);renderDays();updateSummary();checkReady()};
+    btn.onclick=()=>{ selDay=i; selDayDate=new Date(d); renderDays(); fetchHorariosOcupados(d).then(()=>{ updateSummary(); checkReady(); }); };
     g.appendChild(btn);
   }
 }
 
+// ── HORÁRIOS (risca os ocupados automaticamente) ────────────
 function renderTimes(){
   const g=document.getElementById('times-grid');
   g.innerHTML='';
   allTimes.forEach((t,i)=>{
+    const isOcupado=horariosOcupados.includes(t);
     const btn=document.createElement('div');
-    const isUnavail=unavailIdx.includes(i);
-    btn.className='time-btn'+(isUnavail?' unavail':'')+(selTime===i&&!isUnavail?' selected':'');
+    btn.className='time-btn'+(isOcupado?' unavail':'')+(selTime===i&&!isOcupado?' selected':'');
     btn.textContent=t;
-    if(!isUnavail)btn.onclick=()=>{selTime=i;renderTimes();updateSummary();checkReady()};
+    if(!isOcupado) btn.onclick=()=>{ selTime=i; renderTimes(); updateSummary(); checkReady(); };
     g.appendChild(btn);
   });
 }
 
+// ── RESUMO ──────────────────────────────────────────────────
 function updateSummary(){
   const L=LANGS[lang];
   const nm=document.getElementById('client-name').value.trim();
-  const svc=selService!==null?L.services[selService].name:'—';
-  const price=selService!==null?L.services[selService].price:'—';
+  const svc=selService!==null?L.svcName(SERVICES[selService]):'—';
+  const price=selService!==null?SERVICES[selService].price:'—';
   const dateStr=(selDay!==null&&selDayDate)?selDayDate.toLocaleDateString(L.locale,{weekday:'long',day:'numeric',month:'long'}):'—';
   const timeStr=selTime!==null?allTimes[selTime]:'—';
   document.getElementById('sum-svc').textContent=svc;
@@ -343,57 +359,71 @@ function checkReady(){
   document.getElementById('confirm-btn').disabled=!(selService!==null&&selDay!==null&&selTime!==null&&nm);
 }
 
-document.getElementById('client-name').addEventListener('input',()=>{updateSummary();checkReady()});
+document.getElementById('client-name').addEventListener('input',()=>{ updateSummary(); checkReady(); });
 
+// ── CONFIRMAR ───────────────────────────────────────────────
 async function confirmBooking(){
   const L=LANGS[lang];
   const nm=document.getElementById('client-name').value.trim();
-  const svc=L.services[selService];
+  const svc=SERVICES[selService];
+  const svcName=L.svcName(svc);
   const dateStr=selDayDate.toLocaleDateString(L.locale,{weekday:'long',day:'numeric',month:'long'});
   const timeStr=allTimes[selTime];
   const isoDate=selDayDate.toISOString().split('T')[0];
-
   const btn=document.getElementById('confirm-btn');
   const errEl=document.getElementById('error-msg');
-  btn.classList.add('loading');
+  btn.disabled=true;
   document.getElementById('confirm-text').textContent=L.confirmLoading;
   errEl.style.display='none';
-
-  try {
+  try{
     const res=await fetch('/api/agendar',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({nome:nm,servico:svc.name,preco:svc.price,data:isoDate,horario:timeStr,lang})
+      body:JSON.stringify({nome:nm,servico:svcName,preco:svc.price,data:isoDate,horario:timeStr,lang})
     });
     const data=await res.json();
-    if(!res.ok||!data.ok) throw new Error(data.erro||'Erro');
+    if(!res.ok||!data.ok){
+      if(data.ocupado){
+        await fetchHorariosOcupados(selDayDate);
+        selTime=null; checkReady(); updateSummary();
+        errEl.textContent=L.errOcupado;
+      } else {
+        errEl.textContent=L.errMsg;
+      }
+      errEl.style.display='block';
+      btn.disabled=false;
+      document.getElementById('confirm-text').textContent=L.confirm;
+      return;
+    }
     document.getElementById('booking-form').style.display='none';
     const sb=document.getElementById('success-box');
     sb.style.display='block';
     document.getElementById('success-title').textContent=L.successTitle;
-    document.getElementById('success-sub').textContent=L.successSub(svc.name,dateStr,timeStr,nm);
+    document.getElementById('success-sub').textContent=L.successSub(svcName,dateStr,timeStr,nm);
     sb.scrollIntoView({behavior:'smooth',block:'center'});
-  } catch(e) {
+  }catch(e){
     errEl.textContent=L.errMsg;
     errEl.style.display='block';
-    btn.classList.remove('loading');
+    btn.disabled=false;
     document.getElementById('confirm-text').textContent=L.confirm;
   }
 }
 
+// ── RESET ───────────────────────────────────────────────────
 function resetBooking(){
-  selService=null;selDay=null;selDayDate=null;selTime=null;
+  selService=null; selDay=null; selDayDate=null; selTime=null; horariosOcupados=[];
   document.getElementById('client-name').value='';
   document.getElementById('booking-form').style.display='block';
   document.getElementById('success-box').style.display='none';
   document.getElementById('error-msg').style.display='none';
-  renderServices();renderDays();renderTimes();
   document.getElementById('summary-box').style.display='none';
   document.getElementById('confirm-btn').disabled=true;
+  renderServices(); renderDays(); renderTimes();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-renderServices();renderDays();renderTimes();
+// ── INIT ────────────────────────────────────────────────────
+renderServices(); renderDays(); renderTimes();
 </script>
 </body>
 </html>
