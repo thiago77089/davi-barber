@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Davi Barber</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --accent:#C8973A;--accent-dark:#9E7220;--accent-light:#f0c96a;
+    --dark:#111111;--dark2:#1c1c1c;--dark3:#2a2a2a;--dark4:#333333;
+    --light:#f5f0e8;--white:#ffffff;--text-on-dark:#e8dfc8;--text-muted:#8a7a60;
+    --green:#3B6D11;--green-light:#97C459;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--text-on-dark);min-height:100vh}
+  header{background:var(--dark2);border-bottom:2px solid var(--accent);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:0;z-index:100;box-shadow:0 4px 30px rgba(0,0,0,.6)}
+  .logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+  .logo-icon{width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+  .logo-text{font-family:'Playfair Display',serif;font-size:20px;color:var(--accent);letter-spacing:1px}
+  .logo-sub{font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-top:1px}
+  .lang-btns{display:flex;gap:8px}
+  .lang-btn{background:transparent;border:1px solid var(--dark4);color:var(--text-muted);padding:6px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:1px;font-family:'Lato',sans-serif;transition:all .25s}
+  .lang-btn.active,.lang-btn:hover{background:var(--accent);color:var(--dark);border-color:var(--accent)}
+  .hero{background:var(--dark2);padding:60px 5% 50px;text-align:center;border-bottom:1px solid var(--dark3);position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(200,151,58,.12) 0%,transparent 70%);pointer-events:none}
+  .hero-badge{display:inline-block;background:var(--accent);color:var(--dark);font-size:11px;font-weight:700;letter-spacing:3px;padding:5px 18px;border-radius:20px;text-transform:uppercase;margin-bottom:20px}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,6vw,52px);color:var(--white);line-height:1.15;margin-bottom:16px}
+  .hero h1 span{color:var(--accent)}
+  .hero p{color:var(--text-muted);font-size:16px;line-height:1.7;max-width:480px;margin:0 auto 36px;font-weight:300}
+  .hero-stats{display:flex;justify-content:center;gap:clamp(20px,5vw,60px);flex-wrap:wrap}
+  .stat{text-align:center}
+  .stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--accent);line-height:1}
+  .stat-lbl{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+  .divider{display:flex;align-items:center;gap:16px;padding:0 5%;margin:40px 0 0}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--dark3)}
+  .divider-icon{color:var(--accent);font-size:18px}
+  .booking{padding:32px 5% 60px;max-width:860px;margin:0 auto}
+  .section-label{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--text-muted);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+  .section-label::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+  .step-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:16px;padding:24px;margin-bottom:18px;transition:border-color .3s}
+  .step-card:focus-within{border-color:rgba(200,151,58,.4)}
+  .step-header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+  .step-num{width:32px;height:32px;background:var(--accent);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;font-family:'Playfair Display',serif}
+  .step-title{font-size:16px;font-weight:700;color:var(--white);letter-spacing:.5px}
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+  .service-btn{background:var(--dark3);border:2px solid var(--dark4);border-radius:12px;padding:18px 14px;cursor:pointer;text-align:center;transition:all .25s;color:var(--text-on-dark);position:relative;overflow:hidden}
+  .service-btn:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .service-btn.selected{background:rgba(200,151,58,.1);border-color:var(--accent)}
+  .service-btn.selected .service-check{display:block}
+  .service-check{display:none;position:absolute;top:10px;right:10px;width:20px;height:20px;background:var(--accent);border-radius:50%;font-size:11px;color:var(--dark);font-weight:700;line-height:20px;text-align:center}
+  .service-icon{font-size:26px;margin-bottom:8px}
+  .service-name{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+  .service-price{font-size:15px;color:var(--accent);font-weight:700;margin-bottom:3px}
+  .service-time{font-size:11px;color:var(--text-muted)}
+  .days-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .days-row::-webkit-scrollbar{height:4px}
+  .days-row::-webkit-scrollbar-track{background:var(--dark3);border-radius:2px}
+  .days-row::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+  .day-btn{flex-shrink:0;background:var(--dark3);border:2px solid var(--dark4);border-radius:12px;padding:12px 16px;cursor:pointer;text-align:center;transition:all .25s;color:var(--text-on-dark);min-width:68px}
+  .day-btn:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .day-btn.selected{background:rgba(200,151,58,.1);border-color:var(--accent)}
+  .day-name{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+  .day-num{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);line-height:1}
+  .day-month{font-size:11px;color:var(--text-muted);margin-top:4px}
+  .times-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px}
+  .time-btn{background:var(--dark3);border:2px solid var(--dark4);border-radius:8px;padding:10px 6px;cursor:pointer;text-align:center;font-size:13px;font-weight:700;color:var(--white);transition:all .2s;font-family:'Lato',sans-serif}
+  .time-btn:hover:not(.unavail){border-color:var(--accent)}
+  .time-btn.selected{background:rgba(200,151,58,.1);border-color:var(--accent);color:var(--accent)}
+  .time-btn.unavail{opacity:.3;cursor:not-allowed;text-decoration:line-through;color:var(--text-muted)}
+  .name-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;padding:14px 16px;font-size:15px;color:var(--white);font-family:'Lato',sans-serif;transition:border .25s;outline:none}
+  .name-input:focus{border-color:var(--accent)}
+  .name-input::placeholder{color:var(--text-muted)}
+  .summary-box{background:rgba(200,151,58,.06);border:1px solid rgba(200,151,58,.35);border-radius:14px;padding:18px 20px;margin-bottom:16px;animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .summary-title{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:14px;font-weight:700}
+  .summary-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:14px}
+  .summary-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,.05)}
+  .summary-label{color:var(--text-muted)}
+  .summary-value{color:var(--white);font-weight:700}
+  .summary-price{color:var(--accent);font-size:20px;font-weight:700;font-family:'Playfair Display',serif}
+  .confirm-btn{width:100%;background:var(--accent);color:var(--dark);border:none;border-radius:12px;padding:18px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:2px;text-transform:uppercase;transition:all .25s;font-family:'Lato',sans-serif;position:relative;overflow:hidden}
+  .confirm-btn:hover:not(:disabled){background:var(--accent-light);transform:translateY(-1px);box-shadow:0 8px 30px rgba(200,151,58,.4)}
+  .confirm-btn:disabled{opacity:.4;cursor:not-allowed}
+  .confirm-btn.loading{opacity:.7;pointer-events:none}
+  .success-box{display:none;background:var(--dark2);border:1px solid rgba(59,109,17,.5);border-radius:16px;padding:40px 24px;text-align:center;animation:fadeIn .4s ease}
+  .success-circle{width:80px;height:80px;background:rgba(59,109,17,.2);border:2px solid var(--green-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 20px}
+  .success-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--green-light);margin-bottom:12px}
+  .success-sub{font-size:15px;color:var(--text-muted);line-height:1.7;white-space:pre-line;max-width:360px;margin:0 auto 24px}
+  .new-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:10px;padding:12px 28px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:1px;transition:all .25s}
+  .new-btn:hover{background:var(--accent);color:var(--dark)}
+  .error-msg{background:rgba(226,75,74,.1);border:1px solid rgba(226,75,74,.4);border-radius:10px;padding:12px 16px;color:#F09595;font-size:14px;margin-bottom:12px;display:none}
+  footer{background:var(--dark2);border-top:1px solid var(--dark3);padding:30px 5%;text-align:center}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--accent);margin-bottom:8px}
+  .footer-info{font-size:13px;color:var(--text-muted);line-height:1.8}
+  .footer-sep{color:var(--dark4);margin:0 8px}
+  .footer-copy{font-size:11px;color:var(--dark4);margin-top:16px}
+  @media(max-width:500px){header{padding:0 4%}.logo-text{font-size:16px}.hero{padding:40px 4% 36px}.booking{padding:24px 4% 50px}.services-grid{grid-template-columns:1fr 1fr 1fr}.service-name{font-size:12px}.service-price{font-size:13px}.times-grid{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">
+    <div class="logo-icon">✂</div>
+    <div>
+      <div class="logo-text">DAVI BARBER</div>
+      <div class="logo-sub">Premium Cuts</div>
+    </div>
+  </a>
+  <div class="lang-btns">
+    <button class="lang-btn active" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-badge" id="hero-badge">Agendamento Online</div>
+  <h1 id="hero-title">Estilo que <span>fala por si só.</span></h1>
+  <p id="hero-desc">Marque seu horário em menos de 1 minuto. Escolha o serviço, o dia e o horário que preferir.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-lbl" id="stat1">Clientes</div></div>
+    <div class="stat"><div class="stat-num">5 ★</div><div class="stat-lbl" id="stat2">Avaliações</div></div>
+    <div class="stat"><div class="stat-num">8+</div><div class="stat-lbl" id="stat3">Anos</div></div>
+  </div>
+</section>
+
+<div class="divider"><span class="divider-icon">✦</span></div>
+
+<div class="booking">
+  <div class="section-label" id="sec-label">Faça seu agendamento</div>
+
+  <div id="booking-form">
+    <div class="step-card">
+      <div class="step-header"><div class="step-num">1</div><div class="step-title" id="step1-title">Escolha o serviço</div></div>
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+    <div class="step-card">
+      <div class="step-header"><div class="step-num">2</div><div class="step-title" id="step2-title">Escolha a data</div></div>
+      <div class="days-row" id="days-row"></div>
+    </div>
+    <div class="step-card">
+      <div class="step-header"><div class="step-num">3</div><div class="step-title" id="step3-title">Escolha o horário</div></div>
+      <div class="times-grid" id="times-grid"></div>
+    </div>
+    <div class="step-card">
+      <div class="step-header"><div class="step-num">4</div><div class="step-title" id="step4-title">Seu nome</div></div>
+      <input class="name-input" id="client-name" type="text" placeholder="Digite seu nome..." autocomplete="given-name"/>
+    </div>
+
+    <div class="summary-box" id="summary-box" style="display:none">
+      <div class="summary-title" id="sum-heading">Resumo do Agendamento</div>
+      <div class="summary-row"><span class="summary-label" id="sum-svc-lbl">Serviço</span><span class="summary-value" id="sum-svc">—</span></div>
+      <div class="summary-row"><span class="summary-label" id="sum-date-lbl">Data</span><span class="summary-value" id="sum-date">—</span></div>
+      <div class="summary-row"><span class="summary-label" id="sum-time-lbl">Horário</span><span class="summary-value" id="sum-time">—</span></div>
+      <div class="summary-row"><span class="summary-label" id="sum-name-lbl">Nome</span><span class="summary-value" id="sum-name">—</span></div>
+      <div class="summary-row"><span class="summary-label" id="sum-price-lbl">Total</span><span class="summary-price" id="sum-price">—</span></div>
+    </div>
+
+    <div class="error-msg" id="error-msg">Erro ao salvar agendamento. Tente novamente.</div>
+    <button class="confirm-btn" id="confirm-btn" onclick="confirmBooking()" disabled>
+      <span id="confirm-text">CONFIRMAR AGENDAMENTO</span>
+    </button>
+  </div>
+
+  <div class="success-box" id="success-box">
+    <div class="success-circle">✓</div>
+    <div class="success-title" id="success-title">Agendamento Confirmado!</div>
+    <div class="success-sub" id="success-sub"></div>
+    <button class="new-btn" id="new-btn" onclick="resetBooking()">Novo agendamento</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">✂ DAVI BARBER</div>
+  <div class="footer-info">
+    <span id="footer-days">Segunda – Sábado</span>
+    <span class="footer-sep">|</span>
+    09:00 – 20:00
+    <span class="footer-sep">|</span>
+    <span id="footer-walk">Aceita visitas sem hora marcada</span>
+  </div>
+  <div class="footer-copy">© 2025 Davi Barber. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+const LANGS = {
+  pt: {
+    badge:'Agendamento Online', heroTitle:'Estilo que <span>fala por si só.</span>',
+    heroDesc:'Marque seu horário em menos de 1 minuto. Escolha o serviço, o dia e o horário que preferir.',
+    stat1:'Clientes', stat2:'Avaliações', stat3:'Anos',
+    secLabel:'Faça seu agendamento', step1:'Escolha o serviço', step2:'Escolha a data',
+    step3:'Escolha o horário', step4:'Seu nome', namePh:'Digite seu nome...',
+    confirm:'CONFIRMAR AGENDAMENTO', confirmLoading:'SALVANDO...',
+    sumHeading:'Resumo do Agendamento', sumSvc:'Serviço', sumDate:'Data',
+    sumTime:'Horário', sumName:'Nome', sumPrice:'Total',
+    successTitle:'Agendamento Confirmado!', newBtn:'Novo agendamento',
+    footerDays:'Segunda – Sábado', footerWalk:'Aceita visitas sem hora marcada',
+    errMsg:'Erro ao salvar. Tente novamente.',
+    locale:'pt-BR', days:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+    services:[
+      {icon:'✂', name:'Corte de Cabelo', price:'R$ 35', time:'30 min'},
+      {icon:'🧔', name:'Corte + Barba',   price:'R$ 55', time:'50 min'},
+      {icon:'⬆', name:'Sobrancelha',     price:'R$ 15', time:'15 min'}
+    ],
+    successSub:(s,d,t,n)=>`${n}, seu agendamento está confirmado!\n\nServiço: ${s}\nData: ${d}\nHorário: ${t}\n\nTe esperamos!`
+  },
+  en: {
+    badge:'Online Booking', heroTitle:'Style that <span>speaks for itself.</span>',
+    heroDesc:'Book your appointment in under a minute. Choose your service, day and preferred time.',
+    stat1:'Clients', stat2:'Reviews', stat3:'Years',
+    secLabel:'Book your appointment', step1:'Choose a service', step2:'Choose a date',
+    step3:'Choose a time', step4:'Your name', namePh:'Enter your name...',
+    confirm:'CONFIRM BOOKING', confirmLoading:'SAVING...',
+    sumHeading:'Booking Summary', sumSvc:'Service', sumDate:'Date',
+    sumTime:'Time', sumName:'Name', sumPrice:'Total',
+    successTitle:'Booking Confirmed!', newBtn:'New booking',
+    footerDays:'Monday – Saturday', footerWalk:'Walk-ins welcome',
+    errMsg:'Error saving booking. Please try again.',
+    locale:'en-US', days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    services:[
+      {icon:'✂', name:'Haircut',    price:'$10', time:'30 min'},
+      {icon:'🧔', name:'Cut + Beard',price:'$16', time:'50 min'},
+      {icon:'⬆', name:'Eyebrow',    price:'$5',  time:'15 min'}
+    ],
+    successSub:(s,d,t,n)=>`${n}, your booking is confirmed!\n\nService: ${s}\nDate: ${d}\nTime: ${t}\n\nSee you there!`
+  },
+  es: {
+    badge:'Reserva Online', heroTitle:'Un estilo que <span>habla por sí solo.</span>',
+    heroDesc:'Reserva tu turno en menos de un minuto. Elige el servicio, el día y el horario que prefieras.',
+    stat1:'Clientes', stat2:'Reseñas', stat3:'Años',
+    secLabel:'Haz tu reserva', step1:'Elige el servicio', step2:'Elige la fecha',
+    step3:'Elige el horario', step4:'Tu nombre', namePh:'Escribe tu nombre...',
+    confirm:'CONFIRMAR RESERVA', confirmLoading:'GUARDANDO...',
+    sumHeading:'Resumen de la Reserva', sumSvc:'Servicio', sumDate:'Fecha',
+    sumTime:'Horario', sumName:'Nombre', sumPrice:'Total',
+    successTitle:'¡Reserva Confirmada!', newBtn:'Nueva reserva',
+    footerDays:'Lunes – Sábado', footerWalk:'Se aceptan visitas sin cita',
+    errMsg:'Error al guardar. Inténtalo de nuevo.',
+    locale:'es-ES', days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+    services:[
+      {icon:'✂', name:'Corte de Pelo', price:'$10', time:'30 min'},
+      {icon:'🧔', name:'Corte + Barba', price:'$16', time:'50 min'},
+      {icon:'⬆', name:'Ceja',           price:'$5',  time:'15 min'}
+    ],
+    successSub:(s,d,t,n)=>`${n}, ¡tu reserva está confirmada!\n\nServicio: ${s}\nFecha: ${d}\nHorario: ${t}\n\n¡Te esperamos!`
+  }
+};
+
+const allTimes=[];
+for(let h=9;h<=19;h++){allTimes.push(h+':00');if(h<19)allTimes.push(h+':30')}
+const unavailIdx=[0,3,8,13,17];
+
+let lang='pt', selService=null, selDay=null, selDayDate=null, selTime=null;
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===l.toUpperCase()));
+  const L=LANGS[l];
+  document.getElementById('hero-badge').textContent=L.badge;
+  document.getElementById('hero-title').innerHTML=L.heroTitle;
+  document.getElementById('hero-desc').textContent=L.heroDesc;
+  ['stat1','stat2','stat3','sec-label','step1-title','step2-title','step3-title','step4-title',
+   'sum-heading','sum-svc-lbl','sum-date-lbl','sum-time-lbl','sum-name-lbl','sum-price-lbl',
+   'success-title','new-btn','footer-days','footer-walk'].forEach(id=>{
+    const map={
+      'stat1':L.stat1,'stat2':L.stat2,'stat3':L.stat3,'sec-label':L.secLabel,
+      'step1-title':L.step1,'step2-title':L.step2,'step3-title':L.step3,'step4-title':L.step4,
+      'sum-heading':L.sumHeading,'sum-svc-lbl':L.sumSvc,'sum-date-lbl':L.sumDate,
+      'sum-time-lbl':L.sumTime,'sum-name-lbl':L.sumName,'sum-price-lbl':L.sumPrice,
+      'success-title':L.successTitle,'new-btn':L.newBtn,
+      'footer-days':L.footerDays,'footer-walk':L.footerWalk
+    };
+    if(document.getElementById(id))document.getElementById(id).textContent=map[id];
+  });
+  document.getElementById('client-name').placeholder=L.namePh;
+  document.getElementById('confirm-text').textContent=L.confirm;
+  renderServices();renderDays();renderTimes();updateSummary();
+}
+
+function renderServices(){
+  const L=LANGS[lang];
+  const g=document.getElementById('services-grid');
+  g.innerHTML='';
+  L.services.forEach((s,i)=>{
+    const d=document.createElement('div');
+    d.className='service-btn'+(selService===i?' selected':'');
+    d.innerHTML=`<div class="service-check">✓</div><div class="service-icon">${s.icon}</div><div class="service-name">${s.name}</div><div class="service-price">${s.price}</div><div class="service-time">${s.time}</div>`;
+    d.onclick=()=>{selService=i;renderServices();updateSummary();checkReady()};
+    g.appendChild(d);
+  });
+}
+
+function renderDays(){
+  const L=LANGS[lang];
+  const g=document.getElementById('days-row');
+  g.innerHTML='';
+  const today=new Date();
+  for(let i=0;i<7;i++){
+    const d=new Date(today);d.setDate(today.getDate()+i);
+    const btn=document.createElement('div');
+    btn.className='day-btn'+(selDay===i?' selected':'');
+    const monthStr=d.toLocaleString(L.locale,{month:'short'});
+    btn.innerHTML=`<div class="day-name">${L.days[d.getDay()]}</div><div class="day-num">${d.getDate()}</div><div class="day-month">${monthStr}</div>`;
+    btn.onclick=()=>{selDay=i;selDayDate=new Date(d);renderDays();updateSummary();checkReady()};
+    g.appendChild(btn);
+  }
+}
+
+function renderTimes(){
+  const g=document.getElementById('times-grid');
+  g.innerHTML='';
+  allTimes.forEach((t,i)=>{
+    const btn=document.createElement('div');
+    const isUnavail=unavailIdx.includes(i);
+    btn.className='time-btn'+(isUnavail?' unavail':'')+(selTime===i&&!isUnavail?' selected':'');
+    btn.textContent=t;
+    if(!isUnavail)btn.onclick=()=>{selTime=i;renderTimes();updateSummary();checkReady()};
+    g.appendChild(btn);
+  });
+}
+
+function updateSummary(){
+  const L=LANGS[lang];
+  const nm=document.getElementById('client-name').value.trim();
+  const svc=selService!==null?L.services[selService].name:'—';
+  const price=selService!==null?L.services[selService].price:'—';
+  const dateStr=(selDay!==null&&selDayDate)?selDayDate.toLocaleDateString(L.locale,{weekday:'long',day:'numeric',month:'long'}):'—';
+  const timeStr=selTime!==null?allTimes[selTime]:'—';
+  document.getElementById('sum-svc').textContent=svc;
+  document.getElementById('sum-date').textContent=dateStr;
+  document.getElementById('sum-time').textContent=timeStr;
+  document.getElementById('sum-name').textContent=nm||'—';
+  document.getElementById('sum-price').textContent=price;
+  const show=selService!==null&&selDay!==null&&selTime!==null&&nm;
+  document.getElementById('summary-box').style.display=show?'block':'none';
+}
+
+function checkReady(){
+  const nm=document.getElementById('client-name').value.trim();
+  document.getElementById('confirm-btn').disabled=!(selService!==null&&selDay!==null&&selTime!==null&&nm);
+}
+
+document.getElementById('client-name').addEventListener('input',()=>{updateSummary();checkReady()});
+
+async function confirmBooking(){
+  const L=LANGS[lang];
+  const nm=document.getElementById('client-name').value.trim();
+  const svc=L.services[selService];
+  const dateStr=selDayDate.toLocaleDateString(L.locale,{weekday:'long',day:'numeric',month:'long'});
+  const timeStr=allTimes[selTime];
+  const isoDate=selDayDate.toISOString().split('T')[0];
+
+  const btn=document.getElementById('confirm-btn');
+  const errEl=document.getElementById('error-msg');
+  btn.classList.add('loading');
+  document.getElementById('confirm-text').textContent=L.confirmLoading;
+  errEl.style.display='none';
+
+  try {
+    const res=await fetch('/api/agendar',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({nome:nm,servico:svc.name,preco:svc.price,data:isoDate,horario:timeStr,lang})
+    });
+    const data=await res.json();
+    if(!res.ok||!data.ok) throw new Error(data.erro||'Erro');
+    document.getElementById('booking-form').style.display='none';
+    const sb=document.getElementById('success-box');
+    sb.style.display='block';
+    document.getElementById('success-title').textContent=L.successTitle;
+    document.getElementById('success-sub').textContent=L.successSub(svc.name,dateStr,timeStr,nm);
+    sb.scrollIntoView({behavior:'smooth',block:'center'});
+  } catch(e) {
+    errEl.textContent=L.errMsg;
+    errEl.style.display='block';
+    btn.classList.remove('loading');
+    document.getElementById('confirm-text').textContent=L.confirm;
+  }
+}
+
+function resetBooking(){
+  selService=null;selDay=null;selDayDate=null;selTime=null;
+  document.getElementById('client-name').value='';
+  document.getElementById('booking-form').style.display='block';
+  document.getElementById('success-box').style.display='none';
+  document.getElementById('error-msg').style.display='none';
+  renderServices();renderDays();renderTimes();
+  document.getElementById('summary-box').style.display='none';
+  document.getElementById('confirm-btn').disabled=true;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+renderServices();renderDays();renderTimes();
+</script>
+</body>
+</html>
