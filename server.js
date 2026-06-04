@@ -9,7 +9,7 @@ const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'davi1234';
 
 // DB setup (local SQLite file)
 const db = createClient({
-  url: 'file:./db/agendamentos.db'
+  url: process.env.RAILWAY_ENVIRONMENT ? 'file:/tmp/agendamentos.db' : 'file:./db/agendamentos.db'
 });
 
 async function initDB() {
