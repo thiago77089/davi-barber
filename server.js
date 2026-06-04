@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'davi1234';
 
-// DB setup (local SQLite file)
+// DB setup
 const db = createClient({
   url: process.env.RAILWAY_ENVIRONMENT ? 'file:/tmp/agendamentos.db' : 'file:./db/agendamentos.db'
 });
@@ -33,6 +33,23 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// ── GET /api/horarios-ocupados?data=2026-06-05 ─────────────
+// Retorna lista de horários já reservados para uma data
+app.get('/api/horarios-ocupados', async (req, res) => {
+  const { data } = req.query;
+  if (!data) return res.status(400).json({ erro: 'Data obrigatória.' });
+  try {
+    const rows = await db.execute({
+      sql: `SELECT horario FROM agendamentos WHERE data=? AND status != 'cancelado'`,
+      args: [data]
+    });
+    const ocupados = rows.rows.map(r => r.horario);
+    res.json({ ocupados });
+  } catch (e) {
+    res.status(500).json({ erro: 'Erro ao buscar horários.' });
+  }
+});
+
 // ── POST /api/agendar ──────────────────────────────────────
 app.post('/api/agendar', async (req, res) => {
   const { nome, servico, preco, data, horario, lang } = req.body;
@@ -40,6 +57,14 @@ app.post('/api/agendar', async (req, res) => {
     return res.status(400).json({ erro: 'Campos obrigatórios faltando.' });
   }
   try {
+    // Verifica se horário já está ocupado
+    const check = await db.execute({
+      sql: `SELECT id FROM agendamentos WHERE data=? AND horario=? AND status != 'cancelado'`,
+      args: [data, horario]
+    });
+    if (check.rows.length > 0) {
+      return res.status(409).json({ erro: 'Horário já reservado. Escolha outro.', ocupado: true });
+    }
     const result = await db.execute({
       sql: `INSERT INTO agendamentos (nome, servico, preco, data, horario, lang) VALUES (?, ?, ?, ?, ?, ?)`,
       args: [nome, servico, preco || '', data, horario, lang || 'pt']
