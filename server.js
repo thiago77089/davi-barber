@@ -5,7 +5,7 @@ const { createClient } = require('@libsql/client');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'davi1234';
+const ADMIN_PASS = process.env.ADMIN_PASSWORD;
 
 const db = createClient({
   url: process.env.RAILWAY_ENVIRONMENT ? 'file:/tmp/agendamentos.db' : 'file:./db/agendamentos.db'
