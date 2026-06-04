@@ -99,6 +99,34 @@
   .footer-sep{color:var(--dark4);margin:0 8px}
   .footer-copy{font-size:11px;color:var(--dark4);margin-top:16px}
   @media(max-width:500px){header{padding:0 4%}.logo-text{font-size:16px}.hero{padding:40px 4% 36px}.booking{padding:24px 4% 50px}.services-grid{grid-template-columns:1fr 1fr 1fr}.service-name{font-size:12px}.times-grid{grid-template-columns:repeat(4,1fr)}}
+
+  /* AVALIAÇÕES */
+  .reviews-section{padding:40px 5%;background:var(--dark2);border-top:1px solid var(--dark3)}
+  .reviews-header{max-width:860px;margin:0 auto 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .reviews-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--white)}
+  .reviews-avg{font-size:14px;color:var(--muted)}
+  .reviews-avg span{color:var(--accent);font-weight:700;font-size:18px}
+  .reviews-grid{max-width:860px;margin:0 auto 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .review-card{background:var(--dark3);border:1px solid var(--dark4);border-radius:14px;padding:16px}
+  .review-card-name{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+  .review-card-stars{color:var(--accent);font-size:15px;letter-spacing:2px;margin-bottom:8px}
+  .review-card-text{font-size:13px;color:var(--text-muted);line-height:1.6;font-style:italic}
+  .review-form{max-width:860px;margin:0 auto;background:var(--dark3);border:1px solid var(--dark4);border-radius:16px;padding:24px}
+  .review-form-title{font-size:15px;font-weight:700;color:var(--white);margin-bottom:16px}
+  .review-form-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .review-input{background:var(--dark2);border:1px solid var(--dark4);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--white);font-family:'Lato',sans-serif;outline:none;transition:border .2s;flex:1;min-width:140px}
+  .review-input:focus{border-color:var(--accent)}
+  .review-input::placeholder{color:var(--text-muted)}
+  .star-selector{display:flex;gap:6px;margin-bottom:12px}
+  .star-btn{background:none;border:none;font-size:28px;cursor:pointer;color:var(--dark4);transition:color .15s;padding:0}
+  .star-btn.active{color:var(--accent)}
+  .review-submit{background:var(--accent);color:var(--dark);border:none;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;letter-spacing:1px;transition:all .2s}
+  .review-submit:hover{background:var(--accent-light)}
+  .review-success{color:var(--green-light);font-size:14px;margin-top:10px;display:none}
+
+  .signature{background:var(--dark);border-top:1px solid var(--dark3);padding:12px 5%;text-align:center;font-size:11px;color:var(--dark4)}
+  .signature a{color:var(--text-muted);text-decoration:none;transition:color .2s}
+  .signature a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -438,5 +466,87 @@ function resetBooking(){
 // ── INIT ────────────────────────────────────────────────────
 renderServices(); renderDays(); renderTimes();
 </script>
+
+<!-- AVALIAÇÕES -->
+<section class="reviews-section">
+  <div class="reviews-header">
+    <div class="reviews-title" id="reviews-title">⭐ Avaliações</div>
+    <div class="reviews-avg" id="reviews-avg"></div>
+  </div>
+  <div class="reviews-grid" id="reviews-grid"></div>
+  <div class="review-form">
+    <div class="review-form-title" id="review-form-title">Deixe sua avaliação</div>
+    <div class="review-form-row">
+      <input class="review-input" id="review-name" type="text" placeholder="Seu nome..." />
+    </div>
+    <div class="star-selector" id="star-selector">
+      <button class="star-btn" onclick="setStar(1)">★</button>
+      <button class="star-btn" onclick="setStar(2)">★</button>
+      <button class="star-btn" onclick="setStar(3)">★</button>
+      <button class="star-btn" onclick="setStar(4)">★</button>
+      <button class="star-btn" onclick="setStar(5)">★</button>
+    </div>
+    <div class="review-form-row">
+      <input class="review-input" id="review-comment" type="text" placeholder="Comentário (opcional)..." />
+    </div>
+    <button class="review-submit" onclick="submitReview()" id="review-submit-btn">Enviar avaliação</button>
+    <div class="review-success" id="review-success">✓ Obrigado pela avaliação!</div>
+  </div>
+</section>
+
+<script>
+// ── AVALIAÇÕES ─────────────────────────────────────────────
+let selectedStar = 0;
+
+function setStar(n){
+  selectedStar=n;
+  document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('active',i<n));
+}
+
+async function loadReviews(){
+  try{
+    const res=await fetch('/api/avaliacoes');
+    const reviews=await res.json();
+    const g=document.getElementById('reviews-grid');
+    if(!reviews.length){g.innerHTML='<div style="color:var(--text-muted);font-size:14px">Seja o primeiro a avaliar!</div>';return;}
+    const avg=(reviews.reduce((s,r)=>s+r.nota,0)/reviews.length).toFixed(1);
+    document.getElementById('reviews-avg').innerHTML=`<span>${avg} ★</span> (${reviews.length} avaliação(ões))`;
+    g.innerHTML=reviews.map(r=>`
+      <div class="review-card">
+        <div class="review-card-name">${escHtml(r.nome)}</div>
+        <div class="review-card-stars">${'★'.repeat(r.nota)}${'☆'.repeat(5-r.nota)}</div>
+        ${r.comentario?`<div class="review-card-text">"${escHtml(r.comentario)}"</div>`:''}
+      </div>`).join('');
+  }catch(e){}
+}
+
+async function submitReview(){
+  const nome=document.getElementById('review-name').value.trim();
+  const comentario=document.getElementById('review-comment').value.trim();
+  if(!nome){alert('Digite seu nome.');return;}
+  if(!selectedStar){alert('Escolha uma nota.');return;}
+  try{
+    const res=await fetch('/api/avaliacoes',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,nota:selectedStar,comentario})});
+    if(res.ok){
+      document.getElementById('review-name').value='';
+      document.getElementById('review-comment').value='';
+      setStar(0);
+      document.getElementById('review-success').style.display='block';
+      setTimeout(()=>document.getElementById('review-success').style.display='none',3000);
+      loadReviews();
+    }
+  }catch(e){}
+}
+
+function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+loadReviews();
+</script>
+
+
+<div class="signature">
+  Desenvolvido por <a href="https://github.com/thiagorzrx" target="_blank">Thiago Oliveira</a> · thiagorzrx
+</div>
+
 </body>
 </html>
