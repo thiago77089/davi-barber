@@ -90,6 +90,9 @@
   .success-sub{font-size:15px;color:var(--text-muted);line-height:1.7;white-space:pre-line;max-width:360px;margin:0 auto 24px}
   .new-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:10px;padding:12px 28px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:1px;transition:all .25s}
   .new-btn:hover{background:var(--accent);color:var(--dark)}
+  .success-address{font-size:14px;color:var(--text-muted);line-height:1.7;white-space:pre-line;margin-bottom:16px}
+  .maps-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(200,151,58,.1);border:1px solid rgba(200,151,58,.4);color:var(--accent);border-radius:10px;padding:10px 20px;cursor:pointer;font-size:13px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:1px;transition:all .25s;text-decoration:none;margin-bottom:16px}
+  .maps-btn:hover{background:var(--accent);color:var(--dark)}
   footer{background:var(--dark2);border-top:1px solid var(--dark3);padding:30px 5%;text-align:center}
   .footer-logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--accent);margin-bottom:8px}
   .footer-info{font-size:13px;color:var(--text-muted);line-height:1.8}
@@ -164,6 +167,8 @@
     <div class="success-circle">✓</div>
     <div class="success-title" id="success-title">Agendamento Confirmado!</div>
     <div class="success-sub" id="success-sub"></div>
+    <div class="success-address" id="success-address"></div>
+    <a class="maps-btn" id="maps-btn" href="https://maps.google.com/?q=22261+SW+66th+Ave+Boca+Raton+FL+33428" target="_blank">🗺 Ver no Google Maps</a><br>
     <button class="new-btn" id="new-btn" onclick="resetBooking()">Novo agendamento</button>
   </div>
 </div>
@@ -204,7 +209,9 @@ const LANGS = {
     errMsg:'Erro ao salvar. Tente novamente.', errOcupado:'Horário já reservado! Escolha outro.',
     locale:'pt-BR', days:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
     svcName: s => s.name_pt,
-    successSub:(s,d,t,n)=>`${n}, seu agendamento está confirmado!\n\nServiço: ${s}\nData: ${d}\nHorário: ${t}\n\nTe esperamos!`
+    successSub:(s,d,t,n)=>`${n}, seu agendamento está confirmado!\n\nServiço: ${s}\nData: ${d}\nHorário: ${t}\n\nTe esperamos!`,
+    address:'📍 22261 SW 66th Ave, Apt 1704\nBoca Raton, FL 33428',
+    mapsLabel:'Ver no Google Maps'
   },
   en: {
     badge:'Online Booking', heroTitle:'Style that <span>speaks for itself.</span>',
@@ -220,7 +227,9 @@ const LANGS = {
     errMsg:'Error saving. Please try again.', errOcupado:'Time already booked! Choose another.',
     locale:'en-US', days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
     svcName: s => s.name_en,
-    successSub:(s,d,t,n)=>`${n}, your booking is confirmed!\n\nService: ${s}\nDate: ${d}\nTime: ${t}\n\nSee you there!`
+    successSub:(s,d,t,n)=>`${n}, your booking is confirmed!\n\nService: ${s}\nDate: ${d}\nTime: ${t}\n\nSee you there!`,
+    address:'📍 22261 SW 66th Ave, Apt 1704\nBoca Raton, FL 33428',
+    mapsLabel:'View on Google Maps'
   },
   es: {
     badge:'Reserva Online', heroTitle:'Un estilo que <span>habla por sí solo.</span>',
@@ -236,7 +245,9 @@ const LANGS = {
     errMsg:'Error al guardar. Inténtalo de nuevo.', errOcupado:'¡Horario ocupado! Elige otro.',
     locale:'es-ES', days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
     svcName: s => s.name_es,
-    successSub:(s,d,t,n)=>`${n}, ¡tu reserva está confirmada!\n\nServicio: ${s}\nFecha: ${d}\nHorario: ${t}\n\n¡Te esperamos!`
+    successSub:(s,d,t,n)=>`${n}, ¡tu reserva está confirmada!\n\nServicio: ${s}\nFecha: ${d}\nHorario: ${t}\n\n¡Te esperamos!`,
+    address:'📍 22261 SW 66th Ave, Apt 1704\nBoca Raton, FL 33428',
+    mapsLabel:'Ver en Google Maps'
   }
 };
 
@@ -400,6 +411,8 @@ async function confirmBooking(){
     sb.style.display='block';
     document.getElementById('success-title').textContent=L.successTitle;
     document.getElementById('success-sub').textContent=L.successSub(svcName,dateStr,timeStr,nm);
+    document.getElementById('success-address').textContent=L.address;
+    document.getElementById('maps-btn').textContent='🗺 '+L.mapsLabel;
     sb.scrollIntoView({behavior:'smooth',block:'center'});
   }catch(e){
     errEl.textContent=L.errMsg;
