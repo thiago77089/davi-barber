@@ -12,196 +12,218 @@
   gtag('js', new Date());
   gtag('config', 'G-K9HBP3WC37');
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --accent:#C8973A;--accent-dark:#9E7220;--accent-light:#f0c96a;
-    --dark:#111111;--dark2:#1c1c1c;--dark3:#2a2a2a;--dark4:#333333;
-    --white:#ffffff;--text-on-dark:#e8dfc8;--text-muted:#8a7a60;
-    --green-light:#97C459;
-  }
+  :root{--glass:rgba(255,255,255,0.05);--glass-border:rgba(255,255,255,0.09);--glass-hover:rgba(255,255,255,0.09);--glass-active:rgba(255,255,255,0.12);--text:#fff;--text-muted:rgba(255,255,255,0.3);--text-faint:rgba(255,255,255,0.12)}
   html{scroll-behavior:smooth}
-  body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--text-on-dark);min-height:100vh}
-  header{background:var(--dark2);border-bottom:2px solid var(--accent);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:0;z-index:100;box-shadow:0 4px 30px rgba(0,0,0,.6)}
-  .logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-  .logo-icon{width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-  .logo-text{font-family:'Playfair Display',serif;font-size:20px;color:var(--accent);letter-spacing:1px}
-  .logo-sub{font-size:10px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-top:1px}
-  .lang-btns{display:flex;gap:8px}
-  .lang-btn{background:transparent;border:1px solid var(--dark4);color:var(--text-muted);padding:6px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:1px;font-family:'Lato',sans-serif;transition:all .25s}
-  .lang-btn.active,.lang-btn:hover{background:var(--accent);color:var(--dark);border-color:var(--accent)}
-  .hero{background:var(--dark2);padding:60px 5% 50px;text-align:center;border-bottom:1px solid var(--dark3);position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(200,151,58,.12) 0%,transparent 70%);pointer-events:none}
-  .hero-badge{display:inline-block;background:var(--accent);color:var(--dark);font-size:11px;font-weight:700;letter-spacing:3px;padding:5px 18px;border-radius:20px;text-transform:uppercase;margin-bottom:20px}
-  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,6vw,52px);color:var(--white);line-height:1.15;margin-bottom:16px}
-  .hero h1 span{color:var(--accent)}
-  .hero p{color:var(--text-muted);font-size:16px;line-height:1.7;max-width:480px;margin:0 auto 36px;font-weight:300}
-  .hero-stats{display:flex;justify-content:center;gap:clamp(20px,5vw,60px);flex-wrap:wrap}
-  .stat{text-align:center}
-  .stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--accent);line-height:1}
-  .stat-lbl{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
-  .divider{display:flex;align-items:center;gap:16px;padding:0 5%;margin:40px 0 0}
-  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--dark3)}
-  .divider-icon{color:var(--accent);font-size:18px}
-  .booking{padding:32px 5% 60px;max-width:860px;margin:0 auto}
-  .section-label{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--text-muted);margin-bottom:24px;display:flex;align-items:center;gap:10px}
-  .section-label::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
-  .step-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:16px;padding:24px;margin-bottom:18px;transition:border-color .3s}
-  .step-card:focus-within{border-color:rgba(200,151,58,.4)}
-  .step-header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-  .step-num{width:32px;height:32px;background:var(--accent);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;font-family:'Playfair Display',serif}
-  .step-title{font-size:16px;font-weight:700;color:var(--white);letter-spacing:.5px}
-  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-  .service-btn{background:var(--dark3);border:2px solid var(--dark4);border-radius:12px;padding:18px 14px;cursor:pointer;text-align:center;transition:all .25s;color:var(--text-on-dark);position:relative;overflow:hidden}
-  .service-btn:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .service-btn.selected{background:rgba(200,151,58,.1);border-color:var(--accent)}
-  .service-btn.selected .service-check{display:block}
-  .service-check{display:none;position:absolute;top:10px;right:10px;width:20px;height:20px;background:var(--accent);border-radius:50%;font-size:11px;color:var(--dark);font-weight:700;line-height:20px;text-align:center}
-  .service-icon{font-size:26px;margin-bottom:8px}
-  .service-name{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
-  .service-price{font-size:15px;color:var(--accent);font-weight:700;margin-bottom:3px}
-  .service-time{font-size:11px;color:var(--text-muted)}
-  .days-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
-  .days-row::-webkit-scrollbar{height:4px}
-  .days-row::-webkit-scrollbar-track{background:var(--dark3);border-radius:2px}
-  .days-row::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
-  .day-btn{flex-shrink:0;background:var(--dark3);border:2px solid var(--dark4);border-radius:12px;padding:12px 16px;cursor:pointer;text-align:center;transition:all .25s;color:var(--text-on-dark);min-width:68px}
-  .day-btn:hover{border-color:var(--accent);transform:translateY(-2px)}
-  .day-btn.selected{background:rgba(200,151,58,.1);border-color:var(--accent)}
-  .day-name{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-  .day-num{font-family:'Playfair Display',serif;font-size:24px;color:var(--white);line-height:1}
-  .day-month{font-size:11px;color:var(--text-muted);margin-top:4px}
-  .times-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px}
-  .time-btn{background:var(--dark3);border:2px solid var(--dark4);border-radius:8px;padding:10px 6px;cursor:pointer;text-align:center;font-size:13px;font-weight:700;color:var(--white);transition:all .2s;font-family:'Lato',sans-serif}
-  .time-btn:hover:not(.unavail){border-color:var(--accent)}
-  .time-btn.selected{background:rgba(200,151,58,.1);border-color:var(--accent);color:var(--accent)}
-  .time-btn.unavail{opacity:.3;cursor:not-allowed;text-decoration:line-through;color:var(--text-muted)}
-  .name-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;padding:14px 16px;font-size:15px;color:var(--white);font-family:'Lato',sans-serif;transition:border .25s;outline:none}
-  .name-input:focus{border-color:var(--accent)}
-  .name-input::placeholder{color:var(--text-muted)}
-  .summary-box{background:rgba(200,151,58,.06);border:1px solid rgba(200,151,58,.35);border-radius:14px;padding:18px 20px;margin-bottom:16px;animation:fadeIn .3s ease}
+  body{font-family:'Inter',sans-serif;background:linear-gradient(160deg,#1a1a1a 0%,#2d2d2d 50%,#1f1f1f 100%);min-height:100vh;color:var(--text)}
+
+  /* NAV */
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--glass-border);position:sticky;top:0;z-index:100}
+  .logo{font-size:17px;font-weight:600;letter-spacing:-.3px;color:#fff;text-decoration:none}
+  .logo span{color:rgba(255,255,255,0.35)}
+  .langs{display:flex;gap:3px;background:rgba(255,255,255,0.06);border-radius:20px;padding:3px}
+  .lang{background:none;border:none;color:#555;padding:5px 12px;border-radius:16px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;letter-spacing:.5px;transition:all .2s}
+  .lang.on{background:rgba(255,255,255,0.12);color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.3)}
+
+  /* HERO */
+  .hero{padding:52px 24px 40px;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:400px;background:radial-gradient(circle,rgba(255,255,255,0.05) 0%,transparent 70%);pointer-events:none}
+  .hero-pill{display:inline-flex;align-items:center;gap:6px;background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;padding:6px 14px;font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.5px;margin-bottom:24px}
+  .hero-pill::before{content:'';width:5px;height:5px;background:rgba(255,255,255,0.35);border-radius:50%}
+  .hero-title{font-size:clamp(36px,8vw,48px);font-weight:300;line-height:1.05;letter-spacing:-2px;color:#fff;margin-bottom:14px}
+  .hero-title strong{font-weight:700}
+  .hero-sub{font-size:14px;color:var(--text-muted);line-height:1.7;max-width:320px;margin:0 auto 32px;font-weight:300}
+  .hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--glass);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:14px;padding:13px 26px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+  .hero-cta:hover{background:var(--glass-hover);border-color:rgba(255,255,255,0.25);transform:translateY(-1px)}
+  .hero-cta::after{content:'↓';color:var(--text-muted)}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 24px 40px}
+  .stat{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:18px;padding:16px;text-align:center}
+  .stat-n{font-size:28px;font-weight:600;color:#fff;letter-spacing:-1px}
+  .stat-l{font-size:10px;font-weight:500;color:var(--text-faint);letter-spacing:.5px;text-transform:uppercase;margin-top:4px}
+
+  /* DIVIDER */
+  .divider{height:1px;background:var(--glass-border);margin:0 24px 32px}
+
+  /* BOOKING */
+  .booking{padding:0 24px 60px;max-width:860px;margin:0 auto}
+  .sec-label{font-size:10px;font-weight:600;color:rgba(255,255,255,0.2);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;padding-left:2px}
+
+  /* STEP CARD */
+  .step-card{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;padding:20px;margin-bottom:12px;transition:border-color .2s}
+  .step-card:focus-within{border-color:rgba(255,255,255,0.2)}
+  .step-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .step-num{width:28px;height:28px;background:var(--glass-active);border:1px solid var(--glass-border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);flex-shrink:0}
+  .step-title{font-size:14px;font-weight:500;color:#fff;letter-spacing:-.2px}
+
+  /* SERVICES */
+  .svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+  .svc{background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);border-radius:16px;padding:18px 14px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
+  .svc:hover{background:var(--glass-hover);transform:translateY(-2px)}
+  .svc.on{background:var(--glass-active);border-color:rgba(255,255,255,0.22)}
+  .svc.on .svc-check{display:flex}
+  .svc-check{display:none;position:absolute;top:10px;right:10px;width:18px;height:18px;background:rgba(255,255,255,0.15);border-radius:50%;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+  .svc-icon{font-size:22px;margin-bottom:10px}
+  .svc-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.7);margin-bottom:6px}
+  .svc-price{font-size:22px;font-weight:700;color:#fff;letter-spacing:-1px}
+  .svc-time{font-size:10px;color:rgba(255,255,255,0.2);margin-top:3px}
+
+  /* DAYS */
+  .days-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .days-row::-webkit-scrollbar{display:none}
+  .day{flex-shrink:0;background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);border-radius:14px;padding:12px 14px;text-align:center;cursor:pointer;transition:all .2s;min-width:58px}
+  .day:hover{background:var(--glass-hover)}
+  .day.on{background:var(--glass-active);border-color:rgba(255,255,255,0.22)}
+  .day-num{font-size:22px;font-weight:600;color:#fff;letter-spacing:-1px;line-height:1}
+  .day-name{font-size:10px;font-weight:500;color:rgba(255,255,255,0.2);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+
+  /* TIMES */
+  .times-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:6px}
+  .time{background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);border-radius:12px;padding:9px 4px;text-align:center;font-size:12px;font-weight:500;color:rgba(255,255,255,0.35);cursor:pointer;transition:all .2s}
+  .time:hover:not(.occ){background:var(--glass-hover);color:#fff}
+  .time.on{background:var(--glass-active);border-color:rgba(255,255,255,0.25);color:#fff;font-weight:600}
+  .time.occ{opacity:.15;cursor:not-allowed;text-decoration:line-through}
+
+  /* NAME */
+  .name-inp{width:100%;background:transparent;border:none;font-family:'Inter',sans-serif;font-size:15px;font-weight:400;color:#fff;outline:none}
+  .name-inp::placeholder{color:rgba(255,255,255,0.12)}
+
+  /* SUMMARY */
+  .sumbox{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:20px;margin-bottom:12px;animation:fadeIn .3s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .summary-title{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:14px;font-weight:700}
-  .summary-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:14px}
-  .summary-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,.05)}
-  .summary-label{color:var(--text-muted)}
-  .summary-value{color:var(--white);font-weight:700}
-  .summary-price{color:var(--accent);font-size:20px;font-weight:700;font-family:'Playfair Display',serif}
-  .confirm-btn{width:100%;background:var(--accent);color:var(--dark);border:none;border-radius:12px;padding:18px;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:2px;text-transform:uppercase;transition:all .25s;font-family:'Lato',sans-serif;overflow:hidden}
-  .confirm-btn:hover:not(:disabled){background:var(--accent-light);transform:translateY(-1px);box-shadow:0 8px 30px rgba(200,151,58,.4)}
-  .confirm-btn:disabled{opacity:.4;cursor:not-allowed}
-  .error-msg{background:rgba(226,75,74,.1);border:1px solid rgba(226,75,74,.4);border-radius:10px;padding:12px 16px;color:#F09595;font-size:14px;margin-bottom:12px;display:none}
-  .success-box{display:none;background:var(--dark2);border:1px solid rgba(59,109,17,.5);border-radius:16px;padding:40px 24px;text-align:center;animation:fadeIn .4s ease}
-  .success-circle{width:80px;height:80px;background:rgba(59,109,17,.2);border:2px solid var(--green-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 20px}
-  .success-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--green-light);margin-bottom:12px}
-  .success-sub{font-size:15px;color:var(--text-muted);line-height:1.7;white-space:pre-line;max-width:360px;margin:0 auto 24px}
-  .new-btn{background:transparent;border:1px solid var(--accent);color:var(--accent);border-radius:10px;padding:12px 28px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:1px;transition:all .25s}
-  .new-btn:hover{background:var(--accent);color:var(--dark)}
-  .success-address{font-size:14px;color:var(--text-muted);line-height:1.7;white-space:pre-line;margin-bottom:16px}
-  .maps-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(200,151,58,.1);border:1px solid rgba(200,151,58,.4);color:var(--accent);border-radius:10px;padding:10px 20px;cursor:pointer;font-size:13px;font-weight:700;font-family:'Lato',sans-serif;letter-spacing:1px;transition:all .25s;text-decoration:none;margin-bottom:16px}
-  .maps-btn:hover{background:var(--accent);color:var(--dark)}
-  footer{background:var(--dark2);border-top:1px solid var(--dark3);padding:30px 5%;text-align:center}
-  .footer-logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--accent);margin-bottom:8px}
-  .footer-info{font-size:13px;color:var(--text-muted);line-height:1.8}
-  .footer-sep{color:var(--dark4);margin:0 8px}
-  .footer-copy{font-size:11px;color:var(--dark4);margin-top:16px}
-  @media(max-width:500px){header{padding:0 4%}.logo-text{font-size:16px}.hero{padding:40px 4% 36px}.booking{padding:24px 4% 50px}.services-grid{grid-template-columns:1fr 1fr 1fr}.service-name{font-size:12px}.times-grid{grid-template-columns:repeat(4,1fr)}}
+  .sum-title{font-size:10px;font-weight:600;color:rgba(255,255,255,0.2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+  .sum-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:13px}
+  .sum-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.05)}
+  .sum-k{color:rgba(255,255,255,0.25);font-weight:400}
+  .sum-v{color:#fff;font-weight:500}
+  .sum-price{font-size:26px;font-weight:700;color:#fff;letter-spacing:-1px}
 
-  /* AVALIAÇÕES */
-  .reviews-section{padding:40px 5%;background:var(--dark2);border-top:1px solid var(--dark3)}
-  .reviews-header{max-width:860px;margin:0 auto 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-  .reviews-title{font-family:'Playfair Display',serif;font-size:24px;color:var(--white)}
-  .reviews-avg{font-size:14px;color:var(--muted)}
-  .reviews-avg span{color:var(--accent);font-weight:700;font-size:18px}
-  .reviews-grid{max-width:860px;margin:0 auto 32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-  .review-card{background:var(--dark3);border:1px solid var(--dark4);border-radius:14px;padding:16px}
-  .review-card-name{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
-  .review-card-stars{color:var(--accent);font-size:15px;letter-spacing:2px;margin-bottom:8px}
-  .review-card-text{font-size:13px;color:var(--text-muted);line-height:1.6;font-style:italic}
-  .review-form{max-width:860px;margin:0 auto;background:var(--dark3);border:1px solid var(--dark4);border-radius:16px;padding:24px}
-  .review-form-title{font-size:15px;font-weight:700;color:var(--white);margin-bottom:16px}
-  .review-form-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-  .review-input{background:var(--dark2);border:1px solid var(--dark4);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--white);font-family:'Lato',sans-serif;outline:none;transition:border .2s;flex:1;min-width:140px}
-  .review-input:focus{border-color:var(--accent)}
-  .review-input::placeholder{color:var(--text-muted)}
-  .star-selector{display:flex;gap:6px;margin-bottom:12px}
-  .star-btn{background:none;border:none;font-size:28px;cursor:pointer;color:var(--dark4);transition:color .15s;padding:0}
-  .star-btn.active{color:var(--accent)}
-  .review-submit{background:var(--accent);color:var(--dark);border:none;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;letter-spacing:1px;transition:all .2s}
-  .review-submit:hover{background:var(--accent-light)}
-  .review-success{color:var(--green-light);font-size:14px;margin-top:10px;display:none}
+  /* ERROR */
+  .error-msg{background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.2);border-radius:12px;padding:12px 16px;color:rgba(255,150,150,0.9);font-size:13px;margin-bottom:12px;display:none}
 
-  .signature{background:var(--dark);border-top:1px solid var(--dark3);padding:12px 5%;text-align:center;font-size:11px;color:var(--dark4)}
-  .signature a{color:var(--text-muted);text-decoration:none;transition:color .2s}
-  .signature a:hover{color:var(--accent)}
+  /* CONFIRM */
+  .confirm-btn{width:100%;background:rgba(255,255,255,0.1);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:16px;padding:16px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+  .confirm-btn:hover:not(:disabled){background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.3);transform:translateY(-1px)}
+  .confirm-btn:disabled{opacity:.2;cursor:not-allowed;transform:none}
+
+  /* SUCCESS */
+  .success-box{display:none;background:var(--glass);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:40px 24px;text-align:center;animation:fadeIn .4s ease}
+  .success-circle{width:72px;height:72px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px}
+  .success-title{font-size:22px;font-weight:600;color:#fff;margin-bottom:10px;letter-spacing:-.5px}
+  .success-sub{font-size:14px;color:var(--text-muted);line-height:1.7;white-space:pre-line;max-width:340px;margin:0 auto 16px}
+  .success-address{font-size:13px;color:rgba(255,255,255,0.2);line-height:1.7;white-space:pre-line;margin-bottom:16px}
+  .maps-btn{display:inline-flex;align-items:center;gap:6px;background:var(--glass);border:1px solid var(--glass-border);color:rgba(255,255,255,0.5);border-radius:12px;padding:10px 20px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;margin-bottom:16px}
+  .maps-btn:hover{background:var(--glass-hover);color:#fff}
+  .new-btn{background:transparent;border:1px solid var(--glass-border);color:rgba(255,255,255,0.4);border-radius:12px;padding:10px 24px;cursor:pointer;font-size:13px;font-weight:500;font-family:'Inter',sans-serif;transition:all .2s}
+  .new-btn:hover{background:var(--glass);color:#fff}
+
+  /* REVIEWS */
+  .reviews-section{padding:40px 24px;border-top:1px solid var(--glass-border)}
+  .reviews-header{max-width:860px;margin:0 auto 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .reviews-title{font-size:20px;font-weight:600;color:#fff;letter-spacing:-.5px}
+  .reviews-avg{font-size:13px;color:var(--text-muted)}
+  .reviews-avg span{color:#fff;font-weight:600}
+  .reviews-grid{max-width:860px;margin:0 auto 28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+  .review-card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:16px;padding:16px}
+  .review-name{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px}
+  .review-stars{color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:2px;margin-bottom:8px}
+  .review-text{font-size:12px;color:var(--text-muted);line-height:1.6;font-style:italic}
+  .review-form{max-width:860px;margin:0 auto;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:18px;padding:20px}
+  .review-form-title{font-size:13px;font-weight:500;color:rgba(255,255,255,0.4);margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase;font-size:10px}
+  .review-inp{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:12px;padding:11px 14px;font-size:14px;color:#fff;font-family:'Inter',sans-serif;outline:none;transition:border .2s;margin-bottom:10px}
+  .review-inp:focus{border-color:rgba(255,255,255,0.2)}
+  .review-inp::placeholder{color:rgba(255,255,255,0.12)}
+  .stars-row{display:flex;gap:6px;margin-bottom:12px}
+  .star-btn{background:none;border:none;font-size:24px;cursor:pointer;color:rgba(255,255,255,0.12);transition:color .15s;padding:0}
+  .star-btn.on{color:rgba(255,255,255,0.6)}
+  .review-submit{background:rgba(255,255,255,0.08);border:1px solid var(--glass-border);color:#fff;border-radius:12px;padding:11px 22px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+  .review-submit:hover{background:rgba(255,255,255,0.14)}
+  .review-ok{color:rgba(255,255,255,0.4);font-size:13px;margin-top:8px;display:none}
+
+  /* FOOTER */
+  footer{padding:28px 24px;text-align:center;border-top:1px solid var(--glass-border)}
+  .foot-logo{font-size:16px;font-weight:600;color:#fff;letter-spacing:-.3px;margin-bottom:6px}
+  .foot-logo span{color:rgba(255,255,255,0.2)}
+  .foot-info{font-size:11px;color:rgba(255,255,255,0.15);letter-spacing:.5px}
+  .foot-sig{font-size:10px;color:rgba(255,255,255,0.08);margin-top:10px}
+  .foot-sig a{color:rgba(255,255,255,0.15);text-decoration:none;transition:color .2s}
+  .foot-sig a:hover{color:rgba(255,255,255,0.4)}
+
+  @media(max-width:500px){header{padding:14px 16px}.hero{padding:40px 16px 32px}.stats{padding:0 16px 32px}.booking{padding:0 16px 48px}.reviews-section{padding:32px 16px}footer{padding:24px 16px}}
 </style>
 </head>
 <body>
 
 <header>
-  <a class="logo" href="#">
-    <div class="logo-icon">✂</div>
-    <div>
-      <div class="logo-text">DAVI BARBER</div>
-      <div class="logo-sub">Premium Cuts</div>
-    </div>
-  </a>
-  <div class="lang-btns">
-    <button class="lang-btn active" onclick="setLang('pt')">PT</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  <a class="logo" href="#">Davi <span>Barber</span></a>
+  <div class="langs">
+    <button class="lang on" onclick="setLang('pt')">PT</button>
+    <button class="lang" onclick="setLang('en')">EN</button>
+    <button class="lang" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
 <section class="hero">
-  <div class="hero-badge" id="hero-badge">Agendamento Online</div>
-  <h1 id="hero-title">Estilo que <span>fala por si só.</span></h1>
-  <p id="hero-desc">Marque seu horário em menos de 1 minuto. Escolha o serviço, o dia e o horário que preferir.</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-num">500+</div><div class="stat-lbl" id="stat1">Clientes</div></div>
-    <div class="stat"><div class="stat-num">5 ★</div><div class="stat-lbl" id="stat2">Avaliações</div></div>
-    <div class="stat"><div class="stat-num">8+</div><div class="stat-lbl" id="stat3">Anos</div></div>
-  </div>
+  <div class="hero-pill" id="hero-pill">Boca Raton · Florida</div>
+  <h1 class="hero-title" id="hero-title">Estilo que<br><strong>fala por si só.</strong></h1>
+  <p class="hero-sub" id="hero-sub">Agende seu horário em segundos. Sem complicação, sem fila.</p>
+  <button class="hero-cta" id="hero-cta" onclick="document.querySelector('.booking').scrollIntoView({behavior:'smooth'})">
+    <span id="hero-cta-text">Agendar agora</span>
+  </button>
 </section>
 
-<div class="divider"><span class="divider-icon">✦</span></div>
+<div class="stats">
+  <div class="stat"><div class="stat-n" id="s1">500+</div><div class="stat-l" id="sl1">Clientes</div></div>
+  <div class="stat"><div class="stat-n">5 ★</div><div class="stat-l" id="sl2">Avaliações</div></div>
+  <div class="stat"><div class="stat-n">8+</div><div class="stat-l" id="sl3">Anos</div></div>
+</div>
 
-<div class="booking">
-  <div class="section-label" id="sec-label">Faça seu agendamento</div>
+<div class="divider"></div>
+
+<div class="booking" id="booking-area">
   <div id="booking-form">
+
     <div class="step-card">
-      <div class="step-header"><div class="step-num">1</div><div class="step-title" id="step1-title">Escolha o serviço</div></div>
-      <div class="services-grid" id="services-grid"></div>
+      <div class="step-head"><div class="step-num">1</div><div class="step-title" id="step1">Escolha o serviço</div></div>
+      <div class="svcs" id="svcs-grid"></div>
     </div>
+
     <div class="step-card">
-      <div class="step-header"><div class="step-num">2</div><div class="step-title" id="step2-title">Escolha a data</div></div>
+      <div class="step-head"><div class="step-num">2</div><div class="step-title" id="step2">Escolha a data</div></div>
       <div class="days-row" id="days-row"></div>
     </div>
+
     <div class="step-card">
-      <div class="step-header"><div class="step-num">3</div><div class="step-title" id="step3-title">Escolha o horário</div></div>
+      <div class="step-head"><div class="step-num">3</div><div class="step-title" id="step3">Escolha o horário</div></div>
       <div class="times-grid" id="times-grid"></div>
     </div>
+
     <div class="step-card">
-      <div class="step-header"><div class="step-num">4</div><div class="step-title" id="step4-title">Seu nome</div></div>
-      <input class="name-input" id="client-name" type="text" placeholder="Digite seu nome..." autocomplete="given-name"/>
+      <div class="step-head"><div class="step-num">4</div><div class="step-title" id="step4">Seu nome</div></div>
+      <input class="name-inp" id="client-name" type="text" placeholder="Digite seu nome..." autocomplete="given-name"/>
     </div>
-    <div class="summary-box" id="summary-box" style="display:none">
-      <div class="summary-title" id="sum-heading">Resumo do Agendamento</div>
-      <div class="summary-row"><span class="summary-label" id="sum-svc-lbl">Serviço</span><span class="summary-value" id="sum-svc">—</span></div>
-      <div class="summary-row"><span class="summary-label" id="sum-date-lbl">Data</span><span class="summary-value" id="sum-date">—</span></div>
-      <div class="summary-row"><span class="summary-label" id="sum-time-lbl">Horário</span><span class="summary-value" id="sum-time">—</span></div>
-      <div class="summary-row"><span class="summary-label" id="sum-name-lbl">Nome</span><span class="summary-value" id="sum-name">—</span></div>
-      <div class="summary-row"><span class="summary-label" id="sum-price-lbl">Total</span><span class="summary-price" id="sum-price">—</span></div>
+
+    <div class="sumbox" id="sumbox" style="display:none">
+      <div class="sum-title" id="sum-heading">Resumo</div>
+      <div class="sum-row"><span class="sum-k" id="sum-svc-lbl">Serviço</span><span class="sum-v" id="sum-svc">—</span></div>
+      <div class="sum-row"><span class="sum-k" id="sum-date-lbl">Data</span><span class="sum-v" id="sum-date">—</span></div>
+      <div class="sum-row"><span class="sum-k" id="sum-time-lbl">Horário</span><span class="sum-v" id="sum-time">—</span></div>
+      <div class="sum-row"><span class="sum-k" id="sum-name-lbl">Nome</span><span class="sum-v" id="sum-name">—</span></div>
+      <div class="sum-row"><span class="sum-k" id="sum-price-lbl">Total</span><span class="sum-price" id="sum-price">—</span></div>
     </div>
+
     <div class="error-msg" id="error-msg"></div>
     <button class="confirm-btn" id="confirm-btn" onclick="confirmBooking()" disabled>
-      <span id="confirm-text">CONFIRMAR AGENDAMENTO</span>
+      <span id="confirm-text">Confirmar agendamento</span>
     </button>
   </div>
+
   <div class="success-box" id="success-box">
     <div class="success-circle">✓</div>
-    <div class="success-title" id="success-title">Agendamento Confirmado!</div>
+    <div class="success-title" id="success-title">Confirmado!</div>
     <div class="success-sub" id="success-sub"></div>
     <div class="success-address" id="success-address"></div>
     <a class="maps-btn" id="maps-btn" href="https://maps.google.com/?q=22261+SW+66th+Ave+Boca+Raton+FL+33428" target="_blank">🗺 Ver no Google Maps</a><br>
@@ -209,118 +231,131 @@
   </div>
 </div>
 
-<footer>
-  <div class="footer-logo">✂ DAVI BARBER</div>
-  <div class="footer-info">
-    <span id="footer-days">Segunda – Sábado</span>
-    <span class="footer-sep">|</span>
-    09:00 – 20:00
-    <span class="footer-sep">|</span>
-    <span id="footer-walk">Aceita visitas sem hora marcada</span>
+<!-- AVALIAÇÕES -->
+<section class="reviews-section">
+  <div class="reviews-header">
+    <div class="reviews-title" id="reviews-title">Avaliações</div>
+    <div class="reviews-avg" id="reviews-avg"></div>
   </div>
-  <div class="footer-copy">© 2025 Davi Barber. Todos os direitos reservados.</div>
+  <div class="reviews-grid" id="reviews-grid"></div>
+  <div class="review-form">
+    <div class="review-form-title" id="review-form-title">Deixe sua avaliação</div>
+    <input class="review-inp" id="review-name" type="text" placeholder="Seu nome..."/>
+    <div class="stars-row" id="stars-row">
+      <button class="star-btn" onclick="setStar(1)">★</button>
+      <button class="star-btn" onclick="setStar(2)">★</button>
+      <button class="star-btn" onclick="setStar(3)">★</button>
+      <button class="star-btn" onclick="setStar(4)">★</button>
+      <button class="star-btn" onclick="setStar(5)">★</button>
+    </div>
+    <input class="review-inp" id="review-comment" type="text" placeholder="Comentário (opcional)..."/>
+    <button class="review-submit" onclick="submitReview()">Enviar avaliação</button>
+    <div class="review-ok" id="review-ok">✓ Obrigado pela avaliação!</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">Davi <span>Barber</span></div>
+  <div class="foot-info" id="foot-info">Segunda – Sábado · 09:00 – 20:00 · Boca Raton, FL</div>
+  <div class="foot-sig">Desenvolvido por <a href="https://github.com/thiagorzrx" target="_blank">Thiago Oliveira</a></div>
 </footer>
 
 <script>
-// ── PREÇOS FIXOS EM DÓLAR (mesmo em todos os idiomas) ──────
-const SERVICES = [
-  { icon:'✂',  name_pt:'Corte de Cabelo', name_en:'Haircut',     name_es:'Corte de Pelo', price:'$10', time:'30 min' },
-  { icon:'🧔', name_pt:'Corte + Barba',   name_en:'Cut + Beard', name_es:'Corte + Barba', price:'$16', time:'50 min' },
-  { icon:'⬆',  name_pt:'Sobrancelha',     name_en:'Eyebrow',     name_es:'Ceja',          price:'$5',  time:'15 min' }
+const SERVICES=[
+  {icon:'✂', name_pt:'Corte de Cabelo', name_en:'Haircut',    name_es:'Corte de Pelo', price:'$10', time:'30 min'},
+  {icon:'🧔',name_pt:'Corte + Barba',   name_en:'Cut + Beard',name_es:'Corte + Barba', price:'$16', time:'50 min'},
+  {icon:'⬆', name_pt:'Sobrancelha',     name_en:'Eyebrow',    name_es:'Ceja',          price:'$5',  time:'15 min'}
 ];
 
-// ── TRADUÇÕES ───────────────────────────────────────────────
-const LANGS = {
-  pt: {
-    badge:'Agendamento Online', heroTitle:'Estilo que <span>fala por si só.</span>',
-    heroDesc:'Marque seu horário em menos de 1 minuto. Escolha o serviço, o dia e o horário que preferir.',
-    stat1:'Clientes', stat2:'Avaliações', stat3:'Anos',
-    secLabel:'Faça seu agendamento', step1:'Escolha o serviço', step2:'Escolha a data',
-    step3:'Escolha o horário', step4:'Seu nome', namePh:'Digite seu nome...',
-    confirm:'CONFIRMAR AGENDAMENTO', confirmLoading:'SALVANDO...',
-    sumHeading:'Resumo do Agendamento', sumSvc:'Serviço', sumDate:'Data',
-    sumTime:'Horário', sumName:'Nome', sumPrice:'Total',
-    successTitle:'Agendamento Confirmado!', newBtn:'Novo agendamento',
-    footerDays:'Segunda – Sábado', footerWalk:'Aceita visitas sem hora marcada',
-    errMsg:'Erro ao salvar. Tente novamente.', errOcupado:'Horário já reservado! Escolha outro.',
-    locale:'pt-BR', days:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
-    svcName: s => s.name_pt,
+const LANGS={
+  pt:{
+    pill:'Boca Raton · Florida',
+    heroTitle:'Estilo que<br><strong>fala por si só.</strong>',
+    heroSub:'Agende seu horário em segundos. Sem complicação, sem fila.',
+    ctaText:'Agendar agora',
+    sl1:'Clientes',sl2:'Avaliações',sl3:'Anos',
+    step1:'Escolha o serviço',step2:'Escolha a data',step3:'Escolha o horário',step4:'Seu nome',
+    namePh:'Digite seu nome...',
+    confirm:'Confirmar agendamento',confirmLoading:'Salvando...',
+    sumHeading:'Resumo',sumSvc:'Serviço',sumDate:'Data',sumTime:'Horário',sumName:'Nome',sumPrice:'Total',
+    successTitle:'Confirmado!',newBtn:'Novo agendamento',
+    address:'📍 22261 SW 66th Ave, Apt 1704\nBoca Raton, FL 33428',
+    mapsLabel:'Ver no Google Maps',
+    errMsg:'Erro ao salvar. Tente novamente.',errOcupado:'Horário já reservado! Escolha outro.',
+    footInfo:'Segunda – Sábado · 09:00 – 20:00 · Boca Raton, FL',
+    locale:'pt-BR',days:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+    svcName:s=>s.name_pt,
     successSub:(s,d,t,n)=>`${n}, seu agendamento está confirmado!\n\nServiço: ${s}\nData: ${d}\nHorário: ${t}\n\nTe esperamos!`,
-    address:'📍 22261 SW 66th Ave, Apt 1704\nBoca Raton, FL 33428',
-    mapsLabel:'Ver no Google Maps'
+    reviewsTitle:'Avaliações',reviewFormTitle:'Deixe sua avaliação',
+    reviewNamePh:'Seu nome...',reviewCommentPh:'Comentário (opcional)...',
+    reviewSubmit:'Enviar avaliação',reviewOk:'✓ Obrigado pela avaliação!'
   },
-  en: {
-    badge:'Online Booking', heroTitle:'Style that <span>speaks for itself.</span>',
-    heroDesc:'Book your appointment in under a minute. Choose your service, day and preferred time.',
-    stat1:'Clients', stat2:'Reviews', stat3:'Years',
-    secLabel:'Book your appointment', step1:'Choose a service', step2:'Choose a date',
-    step3:'Choose a time', step4:'Your name', namePh:'Enter your name...',
-    confirm:'CONFIRM BOOKING', confirmLoading:'SAVING...',
-    sumHeading:'Booking Summary', sumSvc:'Service', sumDate:'Date',
-    sumTime:'Time', sumName:'Name', sumPrice:'Total',
-    successTitle:'Booking Confirmed!', newBtn:'New booking',
-    footerDays:'Monday – Saturday', footerWalk:'Walk-ins welcome',
-    errMsg:'Error saving. Please try again.', errOcupado:'Time already booked! Choose another.',
-    locale:'en-US', days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-    svcName: s => s.name_en,
+  en:{
+    pill:'Boca Raton · Florida',
+    heroTitle:'Style that<br><strong>speaks for itself.</strong>',
+    heroSub:'Book your appointment in seconds. No hassle, no waiting.',
+    ctaText:'Book now',
+    sl1:'Clients',sl2:'Reviews',sl3:'Years',
+    step1:'Choose a service',step2:'Choose a date',step3:'Choose a time',step4:'Your name',
+    namePh:'Enter your name...',
+    confirm:'Confirm booking',confirmLoading:'Saving...',
+    sumHeading:'Summary',sumSvc:'Service',sumDate:'Date',sumTime:'Time',sumName:'Name',sumPrice:'Total',
+    successTitle:'Confirmed!',newBtn:'New booking',
+    address:'📍 22261 SW 66th Ave, Apt 1704\nBoca Raton, FL 33428',
+    mapsLabel:'View on Google Maps',
+    errMsg:'Error saving. Please try again.',errOcupado:'Time already booked! Choose another.',
+    footInfo:'Mon – Sat · 09:00 – 20:00 · Boca Raton, FL',
+    locale:'en-US',days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    svcName:s=>s.name_en,
     successSub:(s,d,t,n)=>`${n}, your booking is confirmed!\n\nService: ${s}\nDate: ${d}\nTime: ${t}\n\nSee you there!`,
-    address:'📍 22261 SW 66th Ave, Apt 1704\nBoca Raton, FL 33428',
-    mapsLabel:'View on Google Maps'
+    reviewsTitle:'Reviews',reviewFormTitle:'Leave a review',
+    reviewNamePh:'Your name...',reviewCommentPh:'Comment (optional)...',
+    reviewSubmit:'Submit review',reviewOk:'✓ Thanks for your review!'
   },
-  es: {
-    badge:'Reserva Online', heroTitle:'Un estilo que <span>habla por sí solo.</span>',
-    heroDesc:'Reserva tu turno en menos de un minuto. Elige el servicio, el día y el horario que prefieras.',
-    stat1:'Clientes', stat2:'Reseñas', stat3:'Años',
-    secLabel:'Haz tu reserva', step1:'Elige el servicio', step2:'Elige la fecha',
-    step3:'Elige el horario', step4:'Tu nombre', namePh:'Escribe tu nombre...',
-    confirm:'CONFIRMAR RESERVA', confirmLoading:'GUARDANDO...',
-    sumHeading:'Resumen de la Reserva', sumSvc:'Servicio', sumDate:'Fecha',
-    sumTime:'Horario', sumName:'Nombre', sumPrice:'Total',
-    successTitle:'¡Reserva Confirmada!', newBtn:'Nueva reserva',
-    footerDays:'Lunes – Sábado', footerWalk:'Se aceptan visitas sin cita',
-    errMsg:'Error al guardar. Inténtalo de nuevo.', errOcupado:'¡Horario ocupado! Elige otro.',
-    locale:'es-ES', days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
-    svcName: s => s.name_es,
-    successSub:(s,d,t,n)=>`${n}, ¡tu reserva está confirmada!\n\nServicio: ${s}\nFecha: ${d}\nHorario: ${t}\n\n¡Te esperamos!`,
+  es:{
+    pill:'Boca Raton · Florida',
+    heroTitle:'Un estilo que<br><strong>habla por sí solo.</strong>',
+    heroSub:'Reserva tu turno en segundos. Sin complicaciones, sin esperas.',
+    ctaText:'Reservar ahora',
+    sl1:'Clientes',sl2:'Reseñas',sl3:'Años',
+    step1:'Elige el servicio',step2:'Elige la fecha',step3:'Elige el horario',step4:'Tu nombre',
+    namePh:'Escribe tu nombre...',
+    confirm:'Confirmar reserva',confirmLoading:'Guardando...',
+    sumHeading:'Resumen',sumSvc:'Servicio',sumDate:'Fecha',sumTime:'Horario',sumName:'Nombre',sumPrice:'Total',
+    successTitle:'¡Confirmado!',newBtn:'Nueva reserva',
     address:'📍 22261 SW 66th Ave, Apt 1704\nBoca Raton, FL 33428',
-    mapsLabel:'Ver en Google Maps'
+    mapsLabel:'Ver en Google Maps',
+    errMsg:'Error al guardar. Inténtalo de nuevo.',errOcupado:'¡Horario ocupado! Elige otro.',
+    footInfo:'Lun – Sáb · 09:00 – 20:00 · Boca Raton, FL',
+    locale:'es-ES',days:['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+    svcName:s=>s.name_es,
+    successSub:(s,d,t,n)=>`${n}, ¡tu reserva está confirmada!\n\nServicio: ${s}\nFecha: ${d}\nHorario: ${t}\n\n¡Te esperamos!`,
+    reviewsTitle:'Reseñas',reviewFormTitle:'Deja tu reseña',
+    reviewNamePh:'Tu nombre...',reviewCommentPh:'Comentario (opcional)...',
+    reviewSubmit:'Enviar reseña',reviewOk:'✓ ¡Gracias por tu reseña!'
   }
 };
 
-// ── HORÁRIOS: 9:00 → 19:30 de 30 em 30 min ─────────────────
-const allTimes = [];
+const allTimes=[];
 for(let h=9;h<=19;h++){allTimes.push(h+':00');if(h<19)allTimes.push(h+':30');}
 
-let lang='pt', selService=null, selDay=null, selDayDate=null, selTime=null;
-let horariosOcupados=[];
+let lang='pt',selSvc=null,selDay=null,selDayDate=null,selTime=null,horariosOcupados=[];
 
-// ── BUSCA HORÁRIOS OCUPADOS NO SERVIDOR ─────────────────────
-async function fetchHorariosOcupados(date){
-  try{
-    const iso=date.toISOString().split('T')[0];
-    const res=await fetch('/api/horarios-ocupados?data='+iso);
-    const data=await res.json();
-    horariosOcupados=data.ocupados||[];
-  }catch(e){ horariosOcupados=[]; }
-  renderTimes();
-}
-
-// ── TROCA IDIOMA ────────────────────────────────────────────
 function setLang(l){
   lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===l.toUpperCase()));
+  document.querySelectorAll('.lang').forEach(b=>b.classList.toggle('on',b.textContent.trim()===l.toUpperCase()));
   const L=LANGS[l];
-  document.getElementById('hero-badge').textContent=L.badge;
+  document.getElementById('hero-pill').textContent=L.pill;
   document.getElementById('hero-title').innerHTML=L.heroTitle;
-  document.getElementById('hero-desc').textContent=L.heroDesc;
-  document.getElementById('stat1').textContent=L.stat1;
-  document.getElementById('stat2').textContent=L.stat2;
-  document.getElementById('stat3').textContent=L.stat3;
-  document.getElementById('sec-label').textContent=L.secLabel;
-  document.getElementById('step1-title').textContent=L.step1;
-  document.getElementById('step2-title').textContent=L.step2;
-  document.getElementById('step3-title').textContent=L.step3;
-  document.getElementById('step4-title').textContent=L.step4;
+  document.getElementById('hero-sub').textContent=L.heroSub;
+  document.getElementById('hero-cta-text').textContent=L.ctaText;
+  document.getElementById('sl1').textContent=L.sl1;
+  document.getElementById('sl2').textContent=L.sl2;
+  document.getElementById('sl3').textContent=L.sl3;
+  document.getElementById('step1').textContent=L.step1;
+  document.getElementById('step2').textContent=L.step2;
+  document.getElementById('step3').textContent=L.step3;
+  document.getElementById('step4').textContent=L.step4;
   document.getElementById('client-name').placeholder=L.namePh;
   document.getElementById('confirm-text').textContent=L.confirm;
   document.getElementById('sum-heading').textContent=L.sumHeading;
@@ -331,88 +366,90 @@ function setLang(l){
   document.getElementById('sum-price-lbl').textContent=L.sumPrice;
   document.getElementById('success-title').textContent=L.successTitle;
   document.getElementById('new-btn').textContent=L.newBtn;
-  document.getElementById('footer-days').textContent=L.footerDays;
-  document.getElementById('footer-walk').textContent=L.footerWalk;
-  renderServices(); renderDays(); renderTimes(); updateSummary();
+  document.getElementById('foot-info').textContent=L.footInfo;
+  document.getElementById('reviews-title').textContent=L.reviewsTitle;
+  document.getElementById('review-form-title').textContent=L.reviewFormTitle;
+  document.getElementById('review-name').placeholder=L.reviewNamePh;
+  document.getElementById('review-comment').placeholder=L.reviewCommentPh;
+  renderSvcs();renderDays();renderTimes();updateSummary();
 }
 
-// ── SERVIÇOS ────────────────────────────────────────────────
-function renderServices(){
+function renderSvcs(){
   const L=LANGS[lang];
-  const g=document.getElementById('services-grid');
+  const g=document.getElementById('svcs-grid');
   g.innerHTML='';
   SERVICES.forEach((s,i)=>{
     const d=document.createElement('div');
-    d.className='service-btn'+(selService===i?' selected':'');
-    d.innerHTML=`<div class="service-check">✓</div><div class="service-icon">${s.icon}</div><div class="service-name">${L.svcName(s)}</div><div class="service-price">${s.price}</div><div class="service-time">${s.time}</div>`;
-    d.onclick=()=>{ selService=i; renderServices(); updateSummary(); checkReady(); };
+    d.className='svc'+(selSvc===i?' on':'');
+    d.innerHTML=`<div class="svc-check">✓</div><div class="svc-icon">${s.icon}</div><div class="svc-name">${L.svcName(s)}</div><div class="svc-price">${s.price}</div><div class="svc-time">${s.time}</div>`;
+    d.onclick=()=>{selSvc=i;renderSvcs();updateSummary();checkReady();};
     g.appendChild(d);
   });
 }
 
-// ── DIAS (sem domingo) ──────────────────────────────────────
 function renderDays(){
   const L=LANGS[lang];
   const g=document.getElementById('days-row');
   g.innerHTML='';
   const today=new Date();
-  let count=0, idx=0;
+  let count=0,idx=0;
   while(idx<7){
-    const d=new Date(today); d.setDate(today.getDate()+count); count++;
-    if(d.getDay()===0) continue; // pula domingo
-    const i=idx; idx++;
+    const d=new Date(today);d.setDate(today.getDate()+count);count++;
+    if(d.getDay()===0)continue;
+    const i=idx;idx++;
     const btn=document.createElement('div');
-    btn.className='day-btn'+(selDay===i?' selected':'');
-    const monthStr=d.toLocaleString(L.locale,{month:'short'});
-    btn.innerHTML=`<div class="day-name">${L.days[d.getDay()]}</div><div class="day-num">${d.getDate()}</div><div class="day-month">${monthStr}</div>`;
-    btn.onclick=()=>{ selDay=i; selDayDate=new Date(d); renderDays(); fetchHorariosOcupados(d).then(()=>{ updateSummary(); checkReady(); }); };
+    btn.className='day'+(selDay===i?' on':'');
+    btn.innerHTML=`<div class="day-num">${d.getDate()}</div><div class="day-name">${L.days[d.getDay()]}</div>`;
+    btn.onclick=()=>{selDay=i;selDayDate=new Date(d);renderDays();fetchOcupados(d).then(()=>{updateSummary();checkReady();});};
     g.appendChild(btn);
   }
 }
 
-// ── HORÁRIOS (risca os ocupados automaticamente) ────────────
 function renderTimes(){
   const g=document.getElementById('times-grid');
   g.innerHTML='';
   allTimes.forEach((t,i)=>{
-    const isOcupado=horariosOcupados.includes(t);
+    const isOcc=horariosOcupados.includes(t);
     const btn=document.createElement('div');
-    btn.className='time-btn'+(isOcupado?' unavail':'')+(selTime===i&&!isOcupado?' selected':'');
+    btn.className='time'+(isOcc?' occ':'')+(selTime===i&&!isOcc?' on':'');
     btn.textContent=t;
-    if(!isOcupado) btn.onclick=()=>{ selTime=i; renderTimes(); updateSummary(); checkReady(); };
+    if(!isOcc)btn.onclick=()=>{selTime=i;renderTimes();updateSummary();checkReady();};
     g.appendChild(btn);
   });
 }
 
-// ── RESUMO ──────────────────────────────────────────────────
+async function fetchOcupados(date){
+  try{
+    const iso=date.toISOString().split('T')[0];
+    const res=await fetch('/api/horarios-ocupados?data='+iso);
+    const data=await res.json();
+    horariosOcupados=data.ocupados||[];
+  }catch(e){horariosOcupados=[];}
+  renderTimes();
+}
+
 function updateSummary(){
   const L=LANGS[lang];
   const nm=document.getElementById('client-name').value.trim();
-  const svc=selService!==null?L.svcName(SERVICES[selService]):'—';
-  const price=selService!==null?SERVICES[selService].price:'—';
-  const dateStr=(selDay!==null&&selDayDate)?selDayDate.toLocaleDateString(L.locale,{weekday:'long',day:'numeric',month:'long'}):'—';
-  const timeStr=selTime!==null?allTimes[selTime]:'—';
-  document.getElementById('sum-svc').textContent=svc;
-  document.getElementById('sum-date').textContent=dateStr;
-  document.getElementById('sum-time').textContent=timeStr;
+  document.getElementById('sum-svc').textContent=selSvc!==null?L.svcName(SERVICES[selSvc]):'—';
+  document.getElementById('sum-date').textContent=(selDay!==null&&selDayDate)?selDayDate.toLocaleDateString(L.locale,{weekday:'long',day:'numeric',month:'long'}):'—';
+  document.getElementById('sum-time').textContent=selTime!==null?allTimes[selTime]:'—';
   document.getElementById('sum-name').textContent=nm||'—';
-  document.getElementById('sum-price').textContent=price;
-  const show=selService!==null&&selDay!==null&&selTime!==null&&nm;
-  document.getElementById('summary-box').style.display=show?'block':'none';
+  document.getElementById('sum-price').textContent=selSvc!==null?SERVICES[selSvc].price:'—';
+  const show=selSvc!==null&&selDay!==null&&selTime!==null&&nm;
+  document.getElementById('sumbox').style.display=show?'block':'none';
 }
 
 function checkReady(){
   const nm=document.getElementById('client-name').value.trim();
-  document.getElementById('confirm-btn').disabled=!(selService!==null&&selDay!==null&&selTime!==null&&nm);
+  document.getElementById('confirm-btn').disabled=!(selSvc!==null&&selDay!==null&&selTime!==null&&nm);
 }
+document.getElementById('client-name').addEventListener('input',()=>{updateSummary();checkReady();});
 
-document.getElementById('client-name').addEventListener('input',()=>{ updateSummary(); checkReady(); });
-
-// ── CONFIRMAR ───────────────────────────────────────────────
 async function confirmBooking(){
   const L=LANGS[lang];
   const nm=document.getElementById('client-name').value.trim();
-  const svc=SERVICES[selService];
+  const svc=SERVICES[selSvc];
   const svcName=L.svcName(svc);
   const dateStr=selDayDate.toLocaleDateString(L.locale,{weekday:'long',day:'numeric',month:'long'});
   const timeStr=allTimes[selTime];
@@ -423,115 +460,60 @@ async function confirmBooking(){
   document.getElementById('confirm-text').textContent=L.confirmLoading;
   errEl.style.display='none';
   try{
-    const res=await fetch('/api/agendar',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({nome:nm,servico:svcName,preco:svc.price,data:isoDate,horario:timeStr,lang})
-    });
+    const res=await fetch('/api/agendar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome:nm,servico:svcName,preco:svc.price,data:isoDate,horario:timeStr,lang})});
     const data=await res.json();
     if(!res.ok||!data.ok){
-      if(data.ocupado){
-        await fetchHorariosOcupados(selDayDate);
-        selTime=null; checkReady(); updateSummary();
-        errEl.textContent=L.errOcupado;
-      } else {
-        errEl.textContent=L.errMsg;
-      }
-      errEl.style.display='block';
-      btn.disabled=false;
-      document.getElementById('confirm-text').textContent=L.confirm;
-      return;
+      if(data.ocupado){await fetchOcupados(selDayDate);selTime=null;checkReady();updateSummary();errEl.textContent=L.errOcupado;}
+      else errEl.textContent=L.errMsg;
+      errEl.style.display='block';btn.disabled=false;
+      document.getElementById('confirm-text').textContent=L.confirm;return;
     }
     document.getElementById('booking-form').style.display='none';
-    const sb=document.getElementById('success-box');
-    sb.style.display='block';
+    const sb=document.getElementById('success-box');sb.style.display='block';
     document.getElementById('success-title').textContent=L.successTitle;
     document.getElementById('success-sub').textContent=L.successSub(svcName,dateStr,timeStr,nm);
     document.getElementById('success-address').textContent=L.address;
     document.getElementById('maps-btn').textContent='🗺 '+L.mapsLabel;
     sb.scrollIntoView({behavior:'smooth',block:'center'});
   }catch(e){
-    errEl.textContent=L.errMsg;
-    errEl.style.display='block';
-    btn.disabled=false;
-    document.getElementById('confirm-text').textContent=L.confirm;
+    errEl.textContent=LANGS[lang].errMsg;errEl.style.display='block';
+    btn.disabled=false;document.getElementById('confirm-text').textContent=LANGS[lang].confirm;
   }
 }
 
-// ── RESET ───────────────────────────────────────────────────
 function resetBooking(){
-  selService=null; selDay=null; selDayDate=null; selTime=null; horariosOcupados=[];
+  selSvc=null;selDay=null;selDayDate=null;selTime=null;horariosOcupados=[];
   document.getElementById('client-name').value='';
   document.getElementById('booking-form').style.display='block';
   document.getElementById('success-box').style.display='none';
   document.getElementById('error-msg').style.display='none';
-  document.getElementById('summary-box').style.display='none';
+  document.getElementById('sumbox').style.display='none';
   document.getElementById('confirm-btn').disabled=true;
-  renderServices(); renderDays(); renderTimes();
+  renderSvcs();renderDays();renderTimes();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// ── INIT ────────────────────────────────────────────────────
-renderServices(); renderDays(); renderTimes();
-</script>
-
-<!-- AVALIAÇÕES -->
-<section class="reviews-section">
-  <div class="reviews-header">
-    <div class="reviews-title" id="reviews-title">⭐ Avaliações</div>
-    <div class="reviews-avg" id="reviews-avg"></div>
-  </div>
-  <div class="reviews-grid" id="reviews-grid"></div>
-  <div class="review-form">
-    <div class="review-form-title" id="review-form-title">Deixe sua avaliação</div>
-    <div class="review-form-row">
-      <input class="review-input" id="review-name" type="text" placeholder="Seu nome..." />
-    </div>
-    <div class="star-selector" id="star-selector">
-      <button class="star-btn" onclick="setStar(1)">★</button>
-      <button class="star-btn" onclick="setStar(2)">★</button>
-      <button class="star-btn" onclick="setStar(3)">★</button>
-      <button class="star-btn" onclick="setStar(4)">★</button>
-      <button class="star-btn" onclick="setStar(5)">★</button>
-    </div>
-    <div class="review-form-row">
-      <input class="review-input" id="review-comment" type="text" placeholder="Comentário (opcional)..." />
-    </div>
-    <button class="review-submit" onclick="submitReview()" id="review-submit-btn">Enviar avaliação</button>
-    <div class="review-success" id="review-success">✓ Obrigado pela avaliação!</div>
-  </div>
-</section>
-
-<script>
-// ── AVALIAÇÕES ─────────────────────────────────────────────
-let selectedStar = 0;
-
+// AVALIAÇÕES
+let selectedStar=0;
 function setStar(n){
   selectedStar=n;
-  document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('active',i<n));
+  document.querySelectorAll('.star-btn').forEach((b,i)=>b.classList.toggle('on',i<n));
 }
-
 async function loadReviews(){
   try{
     const res=await fetch('/api/avaliacoes');
     const reviews=await res.json();
     const g=document.getElementById('reviews-grid');
-    if(!reviews.length){g.innerHTML='<div style="color:var(--text-muted);font-size:14px">Seja o primeiro a avaliar!</div>';return;}
+    if(!reviews.length){g.innerHTML='<div style="color:rgba(255,255,255,0.2);font-size:13px">Seja o primeiro a avaliar!</div>';return;}
     const avg=(reviews.reduce((s,r)=>s+r.nota,0)/reviews.length).toFixed(1);
-    document.getElementById('reviews-avg').innerHTML=`<span>${avg} ★</span> (${reviews.length} avaliação(ões))`;
-    g.innerHTML=reviews.map(r=>`
-      <div class="review-card">
-        <div class="review-card-name">${escHtml(r.nome)}</div>
-        <div class="review-card-stars">${'★'.repeat(r.nota)}${'☆'.repeat(5-r.nota)}</div>
-        ${r.comentario?`<div class="review-card-text">"${escHtml(r.comentario)}"</div>`:''}
-      </div>`).join('');
+    document.getElementById('reviews-avg').innerHTML=`<span>${avg} ★</span> (${reviews.length})`;
+    g.innerHTML=reviews.map(r=>`<div class="review-card"><div class="review-name">${esc(r.nome)}</div><div class="review-stars">${'★'.repeat(r.nota)}${'☆'.repeat(5-r.nota)}</div>${r.comentario?`<div class="review-text">"${esc(r.comentario)}"</div>`:''}</div>`).join('');
   }catch(e){}
 }
-
 async function submitReview(){
   const nome=document.getElementById('review-name').value.trim();
   const comentario=document.getElementById('review-comment').value.trim();
-  if(!nome){alert('Digite seu nome.');return;}
+  if(!nome){alert(LANGS[lang].reviewNamePh.replace('...','')+' é obrigatório.');return;}
   if(!selectedStar){alert('Escolha uma nota.');return;}
   try{
     const res=await fetch('/api/avaliacoes',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,nota:selectedStar,comentario})});
@@ -539,22 +521,15 @@ async function submitReview(){
       document.getElementById('review-name').value='';
       document.getElementById('review-comment').value='';
       setStar(0);
-      document.getElementById('review-success').style.display='block';
-      setTimeout(()=>document.getElementById('review-success').style.display='none',3000);
+      const ok=document.getElementById('review-ok');ok.textContent=LANGS[lang].reviewOk;ok.style.display='block';
+      setTimeout(()=>ok.style.display='none',3000);
       loadReviews();
     }
   }catch(e){}
 }
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-
-loadReviews();
+renderSvcs();renderDays();renderTimes();loadReviews();
 </script>
-
-
-<div class="signature">
-  Desenvolvido por <a href="https://github.com/thiagorzrx" target="_blank">Thiago Oliveira</a> · thiagorzrx
-</div>
-
 </body>
 </html>
