@@ -4,181 +4,184 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin – Davi Barber</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  :root{--accent:#C8973A;--dark:#111;--dark2:#1c1c1c;--dark3:#2a2a2a;--dark4:#333;--white:#fff;--text:#e8dfc8;--muted:#8a7a60;--green:#97C459;--red:#F09595;--blue:#7EB8F7}
-  body{font-family:'Lato',sans-serif;background:var(--dark);color:var(--text);min-height:100vh}
-  header{background:var(--dark2);border-bottom:2px solid var(--accent);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
-  .logo{font-family:'Playfair Display',serif;font-size:18px;color:var(--accent)}
-  .logo span{font-size:11px;color:var(--muted);margin-left:10px;font-family:'Lato',sans-serif;letter-spacing:2px;text-transform:uppercase}
-  .back-btn{background:transparent;border:1px solid var(--dark4);color:var(--muted);padding:6px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;transition:all .2s;text-decoration:none}
-  .back-btn:hover{border-color:var(--accent);color:var(--accent)}
-  .container{max-width:960px;margin:0 auto;padding:28px 5%}
+  :root{--glass:rgba(255,255,255,0.05);--glass-border:rgba(255,255,255,0.09);--glass-hover:rgba(255,255,255,0.09);--glass-active:rgba(255,255,255,0.12);--text:#fff;--muted:rgba(255,255,255,0.3);--faint:rgba(255,255,255,0.12);--red:rgba(255,100,100,0.8);--green:rgba(100,220,130,0.8)}
+  body{font-family:'Inter',sans-serif;background:linear-gradient(160deg,#1a1a1a 0%,#2d2d2d 50%,#1f1f1f 100%);min-height:100vh;color:#fff}
+
+  header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(255,255,255,0.04);backdrop-filter:blur(24px);border-bottom:1px solid var(--glass-border);position:sticky;top:0;z-index:100}
+  .logo{font-size:17px;font-weight:600;letter-spacing:-.3px}
+  .logo span{color:rgba(255,255,255,0.25)}
+  .back-btn{background:var(--glass);border:1px solid var(--glass-border);color:var(--muted);padding:7px 16px;border-radius:20px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none}
+  .back-btn:hover{background:var(--glass-hover);color:#fff}
+
+  .container{max-width:960px;margin:0 auto;padding:28px 24px}
 
   /* LOGIN */
-  .login-box{background:var(--dark2);border:1px solid var(--dark3);border-radius:16px;padding:40px;max-width:400px;margin:80px auto;text-align:center}
-  .login-box h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-bottom:8px}
-  .login-box p{color:var(--muted);font-size:14px;margin-bottom:24px}
-  .pass-input{width:100%;background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;padding:12px 16px;font-size:15px;color:var(--white);font-family:'Lato',sans-serif;outline:none;transition:border .2s;margin-bottom:12px}
-  .pass-input:focus{border-color:var(--accent)}
-  .pass-input::placeholder{color:var(--muted)}
-  .login-btn{width:100%;background:var(--accent);color:var(--dark);border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:1px;font-family:'Lato',sans-serif;transition:all .2s}
-  .login-btn:hover{background:#f0c96a}
-  .login-err{color:var(--red);font-size:13px;margin-top:8px;display:none}
+  .login-box{background:var(--glass);backdrop-filter:blur(24px);border:1px solid var(--glass-border);border-radius:20px;padding:40px;max-width:400px;margin:80px auto;text-align:center}
+  .login-box h2{font-size:20px;font-weight:600;color:#fff;margin-bottom:8px;letter-spacing:-.5px}
+  .login-box p{color:var(--muted);font-size:14px;margin-bottom:24px;font-weight:300}
+  .pass-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:12px;padding:12px 16px;font-size:14px;color:#fff;font-family:'Inter',sans-serif;outline:none;transition:border .2s;margin-bottom:10px}
+  .pass-input:focus{border-color:rgba(255,255,255,0.2)}
+  .pass-input::placeholder{color:rgba(255,255,255,0.12)}
+  .login-btn{width:100%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:12px;padding:13px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s}
+  .login-btn:hover{background:rgba(255,255,255,0.16)}
+  .login-err{color:rgba(255,100,100,0.8);font-size:13px;margin-top:8px;display:none}
 
   /* TABS */
-  .tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
-  .tab{background:var(--dark3);border:1px solid var(--dark4);color:var(--muted);padding:9px 18px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:700;font-family:'Lato',sans-serif;transition:all .2s}
-  .tab.active{background:var(--accent);color:var(--dark);border-color:var(--accent)}
+  .tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap;background:rgba(255,255,255,0.03);border-radius:16px;padding:6px;border:1px solid var(--glass-border)}
+  .tab{background:none;border:none;color:var(--muted);padding:9px 18px;border-radius:12px;cursor:pointer;font-size:13px;font-weight:500;font-family:'Inter',sans-serif;transition:all .2s;flex:1;text-align:center}
+  .tab.active{background:var(--glass-active);color:#fff}
   .tab-panel{display:none}
   .tab-panel.active{display:block}
 
-  /* CARDS */
-  .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:28px}
-  .stat-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:12px;padding:18px 16px}
-  .stat-card-num{font-family:'Playfair Display',serif;font-size:28px;color:var(--accent)}
-  .stat-card-sub{font-size:12px;color:var(--accent);margin-top:2px}
-  .stat-card-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:6px}
+  /* STAT CARDS */
+  .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:24px}
+  .stat-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:16px}
+  .stat-card-num{font-size:26px;font-weight:600;color:#fff;letter-spacing:-1px}
+  .stat-card-sub{font-size:12px;color:rgba(255,255,255,0.35);margin-top:2px}
+  .stat-card-lbl{font-size:10px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:1px;margin-top:6px}
 
   /* FINANCEIRO */
-  .fin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px}
-  .fin-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:20px}
-  .fin-period{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:8px}
-  .fin-value{font-family:'Playfair Display',serif;font-size:30px;color:var(--green)}
-  .fin-count{font-size:12px;color:var(--muted);margin-top:4px}
+  .fin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-bottom:28px}
+  .fin-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:18px}
+  .fin-period{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.2);margin-bottom:8px;font-weight:500}
+  .fin-value{font-size:28px;font-weight:600;color:#fff;letter-spacing:-1px}
+  .fin-count{font-size:12px;color:rgba(255,255,255,0.2);margin-top:4px}
 
-  /* AGENDA DO DIA */
-  .day-agenda{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:20px;margin-bottom:20px}
-  .day-agenda-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
-  .agenda-slot{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+  /* AGENDA */
+  .day-agenda{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:20px;margin-bottom:20px}
+  .day-agenda-title{font-size:14px;font-weight:500;color:#fff;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;letter-spacing:-.3px}
+  .day-agenda-title span:last-child{font-size:12px;color:var(--muted)}
+  .agenda-slot{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
   .agenda-slot:last-child{border-bottom:none}
-  .agenda-time{font-size:14px;font-weight:700;color:var(--accent);min-width:50px}
-  .agenda-name{font-size:14px;color:var(--white);font-weight:600}
+  .agenda-time{font-size:14px;font-weight:600;color:#fff;min-width:48px;letter-spacing:-.5px}
+  .agenda-name{font-size:14px;color:#fff;font-weight:500}
   .agenda-svc{font-size:12px;color:var(--muted)}
-  .agenda-empty{text-align:center;padding:24px;color:var(--muted);font-size:14px}
+  .agenda-empty{text-align:center;padding:28px;color:rgba(255,255,255,0.15);font-size:14px}
 
-  /* TABELA */
-  .filters{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
-  .filter-btn{background:var(--dark3);border:1px solid var(--dark4);color:var(--muted);padding:7px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Lato',sans-serif;transition:all .2s}
-  .filter-btn.active,.filter-btn:hover{background:var(--accent);color:var(--dark);border-color:var(--accent)}
-  .refresh-btn{margin-left:auto;background:transparent;border:1px solid var(--dark4);color:var(--muted);padding:7px 12px;border-radius:20px;cursor:pointer;font-size:12px;font-family:'Lato',sans-serif;transition:all .2s}
-  .refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
-  .table-wrap{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:14px}
-  th{text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--dark3);font-weight:700}
-  td{padding:11px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
-  tr:hover td{background:rgba(255,255,255,.02)}
-  .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.5px}
-  .badge-confirmado{background:rgba(59,109,17,.2);color:#97C459;border:1px solid rgba(59,109,17,.4)}
-  .badge-cancelado{background:rgba(226,75,74,.1);color:#F09595;border:1px solid rgba(226,75,74,.3)}
-  .badge-concluido{background:rgba(200,151,58,.1);color:var(--accent);border:1px solid rgba(200,151,58,.3)}
-  .action-btn{background:transparent;border:1px solid var(--dark4);color:var(--muted);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-family:'Lato',sans-serif;transition:all .2s;margin-right:4px}
-  .action-btn:hover{border-color:var(--accent);color:var(--accent)}
-  .action-btn.del:hover{border-color:var(--red);color:var(--red)}
-  .empty{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+  /* FILTROS */
+  .filters{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+  .filter-btn{background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);color:var(--muted);padding:7px 14px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:500;font-family:'Inter',sans-serif;transition:all .2s}
+  .filter-btn.active,.filter-btn:hover{background:var(--glass-active);color:#fff;border-color:rgba(255,255,255,0.2)}
+  .refresh-btn{margin-left:auto;background:transparent;border:1px solid var(--glass-border);color:var(--muted);padding:7px 12px;border-radius:20px;cursor:pointer;font-size:12px;font-family:'Inter',sans-serif;transition:all .2s}
+  .refresh-btn:hover{color:#fff;border-color:rgba(255,255,255,0.2)}
+
+  /* TABLE */
+  .table-wrap{overflow-x:auto;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;padding:12px 14px;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.2);border-bottom:1px solid var(--glass-border);font-weight:600}
+  td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(255,255,255,0.02)}
+  .badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.3px}
+  .badge-confirmado{background:rgba(100,200,130,0.1);color:rgba(100,220,130,0.8);border:1px solid rgba(100,200,130,0.2)}
+  .badge-cancelado{background:rgba(255,80,80,0.08);color:rgba(255,120,120,0.8);border:1px solid rgba(255,80,80,0.15)}
+  .badge-concluido{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.5);border:1px solid var(--glass-border)}
+  .action-btn{background:transparent;border:1px solid var(--glass-border);color:var(--muted);padding:4px 10px;border-radius:8px;cursor:pointer;font-size:11px;font-family:'Inter',sans-serif;transition:all .2s;margin-right:4px}
+  .action-btn:hover{background:var(--glass-hover);color:#fff;border-color:rgba(255,255,255,0.2)}
+  .action-btn.del:hover{border-color:rgba(255,80,80,0.4);color:rgba(255,120,120,0.8)}
+  .empty{text-align:center;padding:40px;color:rgba(255,255,255,0.15);font-size:14px}
 
   /* AVALIAÇÕES */
-  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-  .review-card{background:var(--dark2);border:1px solid var(--dark3);border-radius:12px;padding:16px}
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+  .review-card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:14px;padding:16px}
   .review-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
-  .review-name{font-size:14px;font-weight:700;color:var(--white)}
-  .review-stars{color:var(--accent);font-size:16px;letter-spacing:2px}
-  .review-comment{font-size:13px;color:var(--muted);line-height:1.6}
-  .review-date{font-size:11px;color:var(--dark4);margin-top:8px}
-  .review-del{background:transparent;border:none;color:var(--dark4);cursor:pointer;font-size:14px;transition:color .2s}
-  .review-del:hover{color:var(--red)}
-  .avg-stars{font-family:'Playfair Display',serif;font-size:48px;color:var(--accent);text-align:center;margin-bottom:4px}
-  .avg-label{font-size:13px;color:var(--muted);text-align:center;margin-bottom:24px}
+  .review-name{font-size:14px;font-weight:500;color:#fff}
+  .review-stars{color:rgba(255,255,255,0.4);font-size:14px;letter-spacing:2px;margin-bottom:6px}
+  .review-comment{font-size:13px;color:var(--muted);line-height:1.6;font-style:italic}
+  .review-date{font-size:11px;color:rgba(255,255,255,0.12);margin-top:8px}
+  .review-del{background:transparent;border:none;color:rgba(255,255,255,0.12);cursor:pointer;font-size:14px;transition:color .2s}
+  .review-del:hover{color:rgba(255,100,100,0.7)}
+  .avg-box{text-align:center;margin-bottom:24px}
+  .avg-num{font-size:52px;font-weight:600;color:#fff;letter-spacing:-3px}
+  .avg-label{font-size:12px;color:var(--muted);margin-top:4px}
 
-  /* DIAS BLOQUEADOS */
-  .block-form{background:var(--dark2);border:1px solid var(--dark3);border-radius:14px;padding:20px;margin-bottom:20px}
-  .block-form h3{font-size:15px;font-weight:700;color:var(--white);margin-bottom:16px}
-  .form-row{display:flex;gap:10px;flex-wrap:wrap}
-  .form-input{background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--white);font-family:'Lato',sans-serif;outline:none;transition:border .2s;flex:1;min-width:140px}
-  .form-input:focus{border-color:var(--accent)}
-  .form-btn{background:var(--accent);color:var(--dark);border:none;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Lato',sans-serif;white-space:nowrap;transition:all .2s}
-  .form-btn:hover{background:#f0c96a}
+  /* BLOQUEIOS */
+  .block-form{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;padding:20px;margin-bottom:16px}
+  .block-form h3{font-size:14px;font-weight:500;color:rgba(255,255,255,0.5);margin-bottom:14px;letter-spacing:-.2px}
+  .form-row{display:flex;gap:8px;flex-wrap:wrap}
+  .form-input{background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);border-radius:12px;padding:11px 14px;font-size:14px;color:#fff;font-family:'Inter',sans-serif;outline:none;transition:border .2s;flex:1;min-width:140px}
+  .form-input:focus{border-color:rgba(255,255,255,0.2)}
+  .form-input::placeholder{color:rgba(255,255,255,0.12)}
+  .form-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:#fff;border-radius:12px;padding:11px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:all .2s}
+  .form-btn:hover{background:rgba(255,255,255,0.16)}
   .blocked-list{display:flex;flex-direction:column;gap:8px}
-  .blocked-item{background:var(--dark2);border:1px solid var(--dark3);border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
-  .blocked-date{font-size:14px;font-weight:700;color:var(--white)}
+  .blocked-item{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+  .blocked-date{font-size:14px;font-weight:500;color:#fff}
   .blocked-motivo{font-size:12px;color:var(--muted);margin-top:2px}
 
-  .section-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:20px}
-  @media(max-width:500px){.container{padding:20px 4%}.fin-grid{grid-template-columns:1fr 1fr}}
+  .sec-title{font-size:18px;font-weight:600;color:#fff;margin-bottom:18px;letter-spacing:-.5px}
 
-  .signature{background:var(--dark);border-top:1px solid var(--dark3);padding:12px 5%;text-align:center;font-size:11px;color:var(--dark4)}
-  .signature a{color:var(--muted);text-decoration:none;transition:color .2s}
-  .signature a:hover{color:var(--accent)}
+  footer{padding:20px 24px;text-align:center;border-top:1px solid var(--glass-border);margin-top:20px}
+  .foot-sig{font-size:10px;color:rgba(255,255,255,0.08)}
+  .foot-sig a{color:rgba(255,255,255,0.15);text-decoration:none}
+  .foot-sig a:hover{color:rgba(255,255,255,0.4)}
+
+  @media(max-width:500px){.container{padding:20px 16px}.tabs{flex-direction:column}}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">✂ DAVI BARBER <span>Admin</span></div>
+  <div class="logo">Davi <span>Barber · Admin</span></div>
   <a class="back-btn" href="/">← Site</a>
 </header>
 
-<!-- LOGIN -->
 <div id="login-section">
   <div class="login-box">
-    <h2>Painel Administrativo</h2>
+    <h2>Painel Admin</h2>
     <p>Entre com a senha para acessar</p>
     <input class="pass-input" id="pass-input" type="password" placeholder="Senha..." onkeydown="if(event.key==='Enter')doLogin()"/>
-    <button class="login-btn" onclick="doLogin()">ENTRAR</button>
+    <button class="login-btn" onclick="doLogin()">Entrar</button>
     <div class="login-err" id="login-err">Senha incorreta.</div>
   </div>
 </div>
 
-<!-- PAINEL -->
 <div id="admin-panel" style="display:none">
   <div class="container">
-
-    <!-- TABS -->
     <div class="tabs">
-      <button class="tab active" onclick="showTab('dashboard',this)">📊 Dashboard</button>
-      <button class="tab" onclick="showTab('agendamentos',this)">📅 Agendamentos</button>
-      <button class="tab" onclick="showTab('avaliacoes',this)">⭐ Avaliações</button>
-      <button class="tab" onclick="showTab('bloqueios',this)">🚫 Dias Bloqueados</button>
+      <button class="tab active" onclick="showTab('dashboard',this)">Dashboard</button>
+      <button class="tab" onclick="showTab('agendamentos',this)">Agendamentos</button>
+      <button class="tab" onclick="showTab('avaliacoes',this)">Avaliações</button>
+      <button class="tab" onclick="showTab('bloqueios',this)">Dias Bloqueados</button>
     </div>
 
     <!-- DASHBOARD -->
     <div class="tab-panel active" id="tab-dashboard">
-      <div class="section-title">Resumo Financeiro</div>
+      <div class="sec-title">Financeiro</div>
       <div class="fin-grid">
-        <div class="fin-card"><div class="fin-period">Hoje</div><div class="fin-value" id="fin-hoje">$0</div><div class="fin-count" id="fin-hoje-count">0 atendimentos</div></div>
-        <div class="fin-card"><div class="fin-period">Esta Semana</div><div class="fin-value" id="fin-semana">$0</div><div class="fin-count" id="fin-semana-count">0 atendimentos</div></div>
-        <div class="fin-card"><div class="fin-period">Este Mês</div><div class="fin-value" id="fin-mes">$0</div><div class="fin-count" id="fin-mes-count">0 atendimentos</div></div>
-        <div class="fin-card"><div class="fin-period">Total Geral</div><div class="fin-value" id="fin-geral">$0</div><div class="fin-count" id="fin-geral-count">0 atendimentos</div></div>
+        <div class="fin-card"><div class="fin-period">Hoje</div><div class="fin-value" id="fin-hoje">$0</div><div class="fin-count" id="fin-hoje-c">0 atendimentos</div></div>
+        <div class="fin-card"><div class="fin-period">Esta semana</div><div class="fin-value" id="fin-semana">$0</div><div class="fin-count" id="fin-semana-c">0 atendimentos</div></div>
+        <div class="fin-card"><div class="fin-period">Este mês</div><div class="fin-value" id="fin-mes">$0</div><div class="fin-count" id="fin-mes-c">0 atendimentos</div></div>
+        <div class="fin-card"><div class="fin-period">Total geral</div><div class="fin-value" id="fin-geral">$0</div><div class="fin-count" id="fin-geral-c">0 atendimentos</div></div>
       </div>
 
-      <div class="section-title">Agenda de Hoje</div>
+      <div class="sec-title">Agenda de hoje</div>
       <div class="day-agenda">
-        <div class="day-agenda-title">
-          <span id="today-label">Carregando...</span>
-          <span style="font-size:12px;color:var(--muted)" id="today-count"></span>
-        </div>
+        <div class="day-agenda-title"><span id="today-label">—</span><span id="today-count"></span></div>
         <div id="agenda-slots"></div>
       </div>
 
       <div class="stats-row">
         <div class="stat-card"><div class="stat-card-num" id="s-total">0</div><div class="stat-card-lbl">Total</div></div>
-        <div class="stat-card"><div class="stat-card-num" id="s-confirmado">0</div><div class="stat-card-lbl">Confirmados</div></div>
-        <div class="stat-card"><div class="stat-card-num" id="s-concluido">0</div><div class="stat-card-lbl">Concluídos</div></div>
-        <div class="stat-card"><div class="stat-card-num" id="s-cancelado">0</div><div class="stat-card-lbl">Cancelados</div></div>
-        <div class="stat-card"><div class="stat-card-num" id="s-avg">—</div><div class="stat-card-sub" id="s-avg-stars"></div><div class="stat-card-lbl">Avaliação Média</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="s-conf">0</div><div class="stat-card-lbl">Confirmados</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="s-conc">0</div><div class="stat-card-lbl">Concluídos</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="s-canc">0</div><div class="stat-card-lbl">Cancelados</div></div>
+        <div class="stat-card"><div class="stat-card-num" id="s-avg">—</div><div class="stat-card-sub" id="s-avg-s"></div><div class="stat-card-lbl">Avaliação</div></div>
       </div>
     </div>
 
     <!-- AGENDAMENTOS -->
     <div class="tab-panel" id="tab-agendamentos">
-      <div class="section-title">Agendamentos</div>
+      <div class="sec-title">Agendamentos</div>
       <div class="filters">
         <button class="filter-btn active" onclick="setFilter('todos',this)">Todos</button>
         <button class="filter-btn" onclick="setFilter('confirmado',this)">Confirmados</button>
         <button class="filter-btn" onclick="setFilter('concluido',this)">Concluídos</button>
         <button class="filter-btn" onclick="setFilter('cancelado',this)">Cancelados</button>
-        <button class="refresh-btn" onclick="loadAll()">↻ Atualizar</button>
+        <button class="refresh-btn" onclick="loadAll()">↻</button>
       </div>
       <div class="table-wrap">
         <table>
@@ -190,32 +193,35 @@
 
     <!-- AVALIAÇÕES -->
     <div class="tab-panel" id="tab-avaliacoes">
-      <div class="section-title">Avaliações dos Clientes</div>
-      <div id="avg-box" style="margin-bottom:24px"></div>
+      <div class="sec-title">Avaliações</div>
+      <div class="avg-box" id="avg-box"></div>
       <div class="reviews-grid" id="reviews-grid"></div>
     </div>
 
     <!-- BLOQUEIOS -->
     <div class="tab-panel" id="tab-bloqueios">
-      <div class="section-title">Bloquear Dias</div>
+      <div class="sec-title">Dias Bloqueados</div>
       <div class="block-form">
-        <h3>Adicionar dia bloqueado (folga, feriado, etc.)</h3>
+        <h3>Adicionar dia bloqueado</h3>
         <div class="form-row">
-          <input class="form-input" type="date" id="block-date" />
-          <input class="form-input" type="text" id="block-motivo" placeholder="Motivo (ex: Feriado, Folga...)" />
+          <input class="form-input" type="date" id="block-date"/>
+          <input class="form-input" type="text" id="block-motivo" placeholder="Motivo (ex: Feriado, Folga...)"/>
           <button class="form-btn" onclick="addBloqueio()">+ Bloquear</button>
         </div>
       </div>
       <div class="blocked-list" id="blocked-list"></div>
     </div>
-
   </div>
+
+  <footer>
+    <div class="foot-sig">Desenvolvido por <a href="https://github.com/thiagorzrx" target="_blank">Thiago Oliveira</a></div>
+  </footer>
 </div>
 
 <script>
-let pass='', allData=[], allReviews=[], allBloqueios=[], currentFilter='todos';
+let pass='',allData=[],allReviews=[],allBloqueios=[],currentFilter='todos';
 
-function showTab(id, btn){
+function showTab(id,btn){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
@@ -229,10 +235,9 @@ function doLogin(){
 }
 
 async function loadAll(){
-  await Promise.all([loadAgendamentos(), loadRelatorio(), loadReviews(), loadBloqueios()]);
+  await Promise.all([loadAgendamentos(),loadRelatorio(),loadReviews(),loadBloqueios()]);
 }
 
-// ── AGENDAMENTOS ───────────────────────────────────────────
 async function loadAgendamentos(){
   try{
     const res=await fetch('/api/agendamentos?pass='+encodeURIComponent(pass));
@@ -240,18 +245,15 @@ async function loadAgendamentos(){
     allData=await res.json();
     document.getElementById('login-section').style.display='none';
     document.getElementById('admin-panel').style.display='block';
-    updateStats();
-    renderTable();
-    renderAgendaHoje();
+    updateStats();renderTable();renderAgendaHoje();
   }catch(e){document.getElementById('login-err').textContent='Erro de conexão.';document.getElementById('login-err').style.display='block';}
 }
 
 function updateStats(){
-  const today=new Date().toISOString().split('T')[0];
   document.getElementById('s-total').textContent=allData.length;
-  document.getElementById('s-confirmado').textContent=allData.filter(r=>r.status==='confirmado').length;
-  document.getElementById('s-concluido').textContent=allData.filter(r=>r.status==='concluido').length;
-  document.getElementById('s-cancelado').textContent=allData.filter(r=>r.status==='cancelado').length;
+  document.getElementById('s-conf').textContent=allData.filter(r=>r.status==='confirmado').length;
+  document.getElementById('s-conc').textContent=allData.filter(r=>r.status==='concluido').length;
+  document.getElementById('s-canc').textContent=allData.filter(r=>r.status==='cancelado').length;
 }
 
 function renderAgendaHoje(){
@@ -263,12 +265,7 @@ function renderAgendaHoje(){
   document.getElementById('today-count').textContent=slots.length+' agendamento(s)';
   const g=document.getElementById('agenda-slots');
   if(!slots.length){g.innerHTML='<div class="agenda-empty">Nenhum agendamento hoje.</div>';return;}
-  g.innerHTML=slots.map(r=>`
-    <div class="agenda-slot">
-      <div class="agenda-time">${esc(r.horario)}</div>
-      <div><div class="agenda-name">${esc(r.nome)}</div><div class="agenda-svc">${esc(r.servico)} · ${esc(r.preco)}</div></div>
-      <div style="margin-left:auto"><span class="badge badge-${r.status}">${r.status}</span></div>
-    </div>`).join('');
+  g.innerHTML=slots.map(r=>`<div class="agenda-slot"><div class="agenda-time">${esc(r.horario)}</div><div><div class="agenda-name">${esc(r.nome)}</div><div class="agenda-svc">${esc(r.servico)} · ${esc(r.preco)}</div></div><div style="margin-left:auto"><span class="badge badge-${r.status}">${r.status}</span></div></div>`).join('');
 }
 
 function setFilter(f,btn){
@@ -283,23 +280,9 @@ function renderTable(){
   const tbody=document.getElementById('tbody');
   if(!data.length){tbody.innerHTML=`<tr><td colspan="8" class="empty">Nenhum agendamento.</td></tr>`;return;}
   tbody.innerHTML=data.map(r=>{
-    const dateF=r.data?new Date(r.data+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short'}):'—';
-    const badgeClass='badge-'+(r.status||'confirmado');
-    const statusLabel=(r.status||'confirmado').charAt(0).toUpperCase()+(r.status||'confirmado').slice(1);
-    return `<tr>
-      <td style="color:var(--muted);font-size:12px">#${r.id}</td>
-      <td style="font-weight:700;color:var(--white)">${esc(r.nome)}</td>
-      <td>${esc(r.servico)}</td>
-      <td>${dateF}</td>
-      <td style="color:var(--accent);font-weight:700">${esc(r.horario)}</td>
-      <td style="color:var(--accent)">${esc(r.preco||'—')}</td>
-      <td><span class="badge ${badgeClass}">${statusLabel}</span></td>
-      <td>
-        ${r.status!=='concluido'?`<button class="action-btn" onclick="updateStatus(${r.id},'concluido')">✓</button>`:''}
-        ${r.status!=='cancelado'?`<button class="action-btn" onclick="updateStatus(${r.id},'cancelado')">✗</button>`:''}
-        <button class="action-btn del" onclick="deleteItem(${r.id})">🗑</button>
-      </td>
-    </tr>`;
+    const df=r.data?new Date(r.data+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short'}):'—';
+    const sl=(r.status||'confirmado').charAt(0).toUpperCase()+(r.status||'confirmado').slice(1);
+    return `<tr><td style="color:rgba(255,255,255,0.2);font-size:11px">#${r.id}</td><td style="font-weight:500">${esc(r.nome)}</td><td style="color:rgba(255,255,255,0.5)">${esc(r.servico)}</td><td style="color:rgba(255,255,255,0.5)">${df}</td><td style="font-weight:500">${esc(r.horario)}</td><td style="color:rgba(255,255,255,0.5)">${esc(r.preco||'—')}</td><td><span class="badge badge-${r.status||'confirmado'}">${sl}</span></td><td>${r.status!=='concluido'?`<button class="action-btn" onclick="updateStatus(${r.id},'concluido')">✓</button>`:''}${r.status!=='cancelado'?`<button class="action-btn" onclick="updateStatus(${r.id},'cancelado')">✗</button>`:''}<button class="action-btn del" onclick="deleteItem(${r.id})">🗑</button></td></tr>`;
   }).join('');
 }
 
@@ -313,57 +296,40 @@ async function deleteItem(id){
   loadAll();
 }
 
-// ── RELATÓRIO ──────────────────────────────────────────────
 async function loadRelatorio(){
   try{
     const res=await fetch('/api/relatorio?pass='+encodeURIComponent(pass));
     if(!res.ok)return;
     const d=await res.json();
     document.getElementById('fin-hoje').textContent='$'+d.hoje.total.toFixed(2);
-    document.getElementById('fin-hoje-count').textContent=d.hoje.count+' atendimento(s)';
+    document.getElementById('fin-hoje-c').textContent=d.hoje.count+' atendimento(s)';
     document.getElementById('fin-semana').textContent='$'+d.semana.total.toFixed(2);
-    document.getElementById('fin-semana-count').textContent=d.semana.count+' atendimento(s)';
+    document.getElementById('fin-semana-c').textContent=d.semana.count+' atendimento(s)';
     document.getElementById('fin-mes').textContent='$'+d.mes.total.toFixed(2);
-    document.getElementById('fin-mes-count').textContent=d.mes.count+' atendimento(s)';
+    document.getElementById('fin-mes-c').textContent=d.mes.count+' atendimento(s)';
     document.getElementById('fin-geral').textContent='$'+d.geral.total.toFixed(2);
-    document.getElementById('fin-geral-count').textContent=d.geral.count+' atendimento(s)';
+    document.getElementById('fin-geral-c').textContent=d.geral.count+' atendimento(s)';
   }catch(e){}
 }
 
-// ── AVALIAÇÕES ─────────────────────────────────────────────
 async function loadReviews(){
   try{
     const res=await fetch('/api/avaliacoes');
     allReviews=await res.json();
     renderReviews();
-    updateAvgStar();
+    if(allReviews.length){
+      const avg=(allReviews.reduce((s,r)=>s+r.nota,0)/allReviews.length).toFixed(1);
+      document.getElementById('s-avg').textContent=avg;
+      document.getElementById('s-avg-s').textContent='★'.repeat(Math.round(avg));
+    }
   }catch(e){}
-}
-
-function updateAvgStar(){
-  if(!allReviews.length){document.getElementById('s-avg').textContent='—';document.getElementById('s-avg-stars').textContent='';return;}
-  const avg=(allReviews.reduce((s,r)=>s+r.nota,0)/allReviews.length).toFixed(1);
-  document.getElementById('s-avg').textContent=avg;
-  document.getElementById('s-avg-stars').textContent='★'.repeat(Math.round(avg));
 }
 
 function renderReviews(){
   const avg=allReviews.length?(allReviews.reduce((s,r)=>s+r.nota,0)/allReviews.length).toFixed(1):null;
-  document.getElementById('avg-box').innerHTML=avg?`<div class="avg-stars">${avg} ★</div><div class="avg-label">${allReviews.length} avaliação(ões)</div>`:'<div style="color:var(--muted);text-align:center;padding:20px">Nenhuma avaliação ainda.</div>';
+  document.getElementById('avg-box').innerHTML=avg?`<div class="avg-num">${avg} ★</div><div class="avg-label">${allReviews.length} avaliação(ões)</div>`:'<div style="color:rgba(255,255,255,0.15);font-size:14px;padding:20px">Nenhuma avaliação ainda.</div>';
   const g=document.getElementById('reviews-grid');
-  if(!allReviews.length){g.innerHTML='';return;}
-  g.innerHTML=allReviews.map(r=>`
-    <div class="review-card">
-      <div class="review-header">
-        <div>
-          <div class="review-name">${esc(r.nome)}</div>
-          <div class="review-stars">${'★'.repeat(r.nota)}${'☆'.repeat(5-r.nota)}</div>
-        </div>
-        <button class="review-del" onclick="deleteReview(${r.id})" title="Excluir">🗑</button>
-      </div>
-      ${r.comentario?`<div class="review-comment">"${esc(r.comentario)}"</div>`:''}
-      <div class="review-date">${new Date(r.criado_em).toLocaleDateString('pt-BR')}</div>
-    </div>`).join('');
+  g.innerHTML=allReviews.map(r=>`<div class="review-card"><div class="review-header"><div><div class="review-name">${esc(r.nome)}</div><div class="review-stars">${'★'.repeat(r.nota)}${'☆'.repeat(5-r.nota)}</div></div><button class="review-del" onclick="deleteReview(${r.id})">🗑</button></div>${r.comentario?`<div class="review-comment">"${esc(r.comentario)}"</div>`:''}<div class="review-date">${new Date(r.criado_em).toLocaleDateString('pt-BR')}</div></div>`).join('');
 }
 
 async function deleteReview(id){
@@ -372,7 +338,6 @@ async function deleteReview(id){
   loadReviews();
 }
 
-// ── DIAS BLOQUEADOS ────────────────────────────────────────
 async function loadBloqueios(){
   try{
     const res=await fetch('/api/dias-bloqueados?pass='+encodeURIComponent(pass));
@@ -386,11 +351,8 @@ function renderBloqueios(){
   const g=document.getElementById('blocked-list');
   if(!allBloqueios.length){g.innerHTML='<div class="empty">Nenhum dia bloqueado.</div>';return;}
   g.innerHTML=allBloqueios.map(b=>{
-    const dateF=new Date(b.data+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
-    return `<div class="blocked-item">
-      <div><div class="blocked-date">📅 ${dateF}</div>${b.motivo?`<div class="blocked-motivo">${esc(b.motivo)}</div>`:''}</div>
-      <button class="action-btn del" onclick="deleteBloqueio(${b.id})">🗑 Remover</button>
-    </div>`;
+    const df=new Date(b.data+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});
+    return `<div class="blocked-item"><div><div class="blocked-date">📅 ${df}</div>${b.motivo?`<div class="blocked-motivo">${esc(b.motivo)}</div>`:''}</div><button class="action-btn del" onclick="deleteBloqueio(${b.id})">🗑 Remover</button></div>`;
   }).join('');
 }
 
@@ -410,12 +372,7 @@ async function deleteBloqueio(id){
   loadBloqueios();
 }
 
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 </script>
-
-<div class="signature">
-  Desenvolvido por <a href="https://github.com/thiagorzrx" target="_blank">Thiago Oliveira</a> · thiagorzrx
-</div>
-
 </body>
 </html>
